@@ -9,7 +9,9 @@
   --gray-bg: #ffff;
   --hover-gray-bg: #dedede;
   --line-color: #e0e0e0;
+  --gray: #ededed;
 }
+
 [data-theme="dark"] {
   // dark theme
   --background-color: #161616;
@@ -19,6 +21,7 @@
   --gray-bg: #1b1b1b;
   --hover-gray-bg: #363636;
   --line-color: #525252;
+  --gray: #303030;
 }
 
 ::-webkit-scrollbar {
