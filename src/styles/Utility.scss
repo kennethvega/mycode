@@ -1,0 +1,24 @@
+.btn {
+  cursor: pointer;
+  padding: 1.2rem 5rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  transition: all 0.3s;
+  border-radius: 0.5rem;
+  border: none;
+}
+.btn-main {
+  background-color: var(--text);
+  color: var(--gray-bg);
+  &:hover {
+    background-color: var(--hover-text);
+  }
+}
+.btn-outlined {
+  background-color: var(--gray-bg);
+  color: var(--text);
+  border: 1px solid var(--text);
+  &:hover {
+    background-color: var(--hover-gray-bg);
+  }
+}
