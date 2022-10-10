@@ -1,6 +1,7 @@
 .btn {
   cursor: pointer;
-  padding: 1.2rem 5rem;
+  width: 20rem;
+  padding: 1.2rem 3rem;
   font-size: 1.4rem;
   font-weight: 600;
   transition: all 0.3s;
@@ -21,4 +22,18 @@
   &:hover {
     background-color: var(--hover-gray-bg);
   }
+}
+.container {
+  max-width: 100rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+// margins
+.margin-top-big {
+  margin-top: 8rem;
+}
+
+.footer-mark {
+  color: var(--text-light);
+  margin-bottom: 1rem;
 }

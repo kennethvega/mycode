@@ -1,4 +1,38 @@
-.home {
-  margin-top: 15rem;
-  background-color: var(--background-color);
+.home-container {
+  max-width: 100rem;
+  margin: 8rem auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 27rem 1fr;
+  gap: 1rem;
+}
+.side-bar {
+  background-color: var(--gray-bg);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 0.5rem;
+  border: 1px solid var(--line-color);
+}
+.welcome-message {
+  font-size: 1.7rem;
+  margin: 2rem 0;
+  padding: 1.5rem;
+}
+.side-bar-links {
+  margin-top: 2rem;
+  & p {
+    font-size: 1.6rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+  }
+}
+.login {
+  font-size: 1.5rem;
+  cursor: pointer;
 }

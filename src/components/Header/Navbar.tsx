@@ -1,13 +1,13 @@
 import { IoMdAdd } from "react-icons/io";
 import OutlineBtn from "../Buttons/OutlineBtn";
-import Container from "../Container";
+
 import styles from "./Navbar.module.scss";
 import Theme from "./Theme";
 
 const Navbar = () => {
   return (
     <nav className={styles.container}>
-      <Container>
+      <div className="container">
         <div className={styles.content}>
           <h1 className={styles.logo}>MYCODEGO</h1>
           <div className={styles["navbar-right-content"]}>
@@ -17,7 +17,7 @@ const Navbar = () => {
             <OutlineBtn onClick={() => {}}>Create account</OutlineBtn>
           </div>
         </div>
-      </Container>
+      </div>
     </nav>
   );
 };
