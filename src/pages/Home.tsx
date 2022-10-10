@@ -18,7 +18,7 @@ const Home = () => {
             <div className={styles["side-bar-links"]}>
               <p>
                 <AiFillHome />
-                <strong> Home</strong>
+                <strong>Home</strong>
               </p>
               <p>
                 <BsFileEarmarkCode />
@@ -31,7 +31,7 @@ const Home = () => {
             </div>
             {/* add functionality later */}
 
-            <Button>Create a document</Button>
+            <Button disabled={false}>Create a document</Button>
           </>
         ) : (
           <>
@@ -40,8 +40,8 @@ const Home = () => {
               platform for developers. Login to create your own coding
               documentation and share it to the world.
             </p>
-            <Button>Demo account</Button>
-            <OutlineBtn>Create account</OutlineBtn>
+            <Button disabled={false}>Demo account</Button>
+            <OutlineBtn disabled={false}>Create account</OutlineBtn>
             <p className={styles.login}>Login</p>
           </>
         )}

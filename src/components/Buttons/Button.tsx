@@ -1,9 +1,14 @@
 import { ButtonProps } from "../../ts/interfaces/Buttons";
 
 // custome button
-const Button = ({ children, onClick }: ButtonProps) => {
+const Button = ({ children, onClick, disabled }: ButtonProps) => {
   return (
-    <button type="button" onClick={onClick} className="btn btn-main">
+    <button
+      type="button"
+      disabled={disabled}
+      onClick={onClick}
+      className="btn btn-main"
+    >
       {children}
     </button>
   );

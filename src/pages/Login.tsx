@@ -1,4 +1,4 @@
-import React from "react";
+import Button from "../components/Buttons/Button";
 import Form from "../components/Form";
 const Login = () => {
   return (
@@ -25,6 +25,7 @@ const Login = () => {
             // value={password}
           />
         </label>
+        <Button disabled={false}>Login</Button>
       </Form>
     </div>
   );
