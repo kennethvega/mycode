@@ -27,11 +27,11 @@ const SignUp = () => {
           />
         </label>
         <label>
-          <span>Permanent User name:</span>
+          <span>Username:</span>
           <input
             type="text"
             required
-            placeholder="make unique username"
+            placeholder="permanent username"
             // onChange={(e) => setUserName(e.target.value)}
             // value={userName}
           />
