@@ -3,7 +3,6 @@ import { BsFillSunFill } from "react-icons/bs";
 import styles from "./Theme.module.scss";
 import { useTheme } from "next-themes";
 
-
 const Theme = () => {
   const { theme, setTheme } = useTheme();
   const handleTheme = () => {
@@ -16,9 +15,9 @@ const Theme = () => {
   return (
     <div onClick={handleTheme} className={styles.themeToggle}>
       {theme === "dark" ? (
-        <HiMoon className={styles.icon} />
-      ) : (
         <BsFillSunFill className={styles.icon} />
+      ) : (
+        <HiMoon className={styles.icon} />
       )}
     </div>
   );

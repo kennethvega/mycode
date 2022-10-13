@@ -20,7 +20,10 @@ const Navbar = () => {
             {/* <IoMdAdd className={styles.icon} title="Create a document" /> */}
             <Theme />
             <p onClick={() => navigate("/login")}>Login</p>
-            <SecondaryButton onClick={() => navigate("/signup")}>
+            <SecondaryButton
+              disabled={false}
+              onClick={() => navigate("/signup")}
+            >
               Create account
             </SecondaryButton>
           </div>

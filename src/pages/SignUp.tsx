@@ -1,9 +1,23 @@
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
 import Form from "../components/Form";
+import LoadingSpinner from "../components/LoadingSpinner";
+import { useSignup } from "../hooks/useSignUp";
 
 const SignUp = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("");
+  const [fullName, setFullName] = useState("");
+  const { signup, error, isPending } = useSignup();
   const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    await signup(email, password, userName);
+    console.log(error);
+  };
   return (
     <div className="container margin-top-big">
       <Form>
@@ -13,19 +27,20 @@ const SignUp = () => {
           <input
             type="email"
             placeholder="johndoe@gmail.com"
-            // onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             required
-            // value={email}
+            value={email}
           />
         </label>
+
         <label>
           <span>Password:</span>
           <input
             type="password"
             required
             placeholder="password"
-            // onChange={(e) => setPassword(e.target.value)}
-            // value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
           />
         </label>
         <label>
@@ -34,8 +49,8 @@ const SignUp = () => {
             type="text"
             required
             placeholder="permanent username"
-            // onChange={(e) => setUserName(e.target.value)}
-            // value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+            value={userName}
           />
         </label>
         <label>
@@ -43,15 +58,23 @@ const SignUp = () => {
           <input
             type="text"
             required
-            // onChange={(e) => setUserName(e.target.value)}
-            // value={userName}
+            onChange={(e) => setFullName(e.target.value)}
+            value={fullName}
             placeholder="John Doe"
           />
         </label>
-        <PrimaryButton disabled={false}>Sign up</PrimaryButton>
+        {isPending ? (
+          <PrimaryButton disabled={true}>
+            <LoadingSpinner />
+          </PrimaryButton>
+        ) : (
+          <PrimaryButton disabled={false} onClick={handleSubmit}>
+            Sign up
+          </PrimaryButton>
+        )}
+
         <h3 className="form-message">
           Already have an account ?{"  "}
-          {/* <Link href="/Login">Log in</Link> */}
           <a onClick={() => navigate("/login")}>Log in</a>
         </h3>
       </Form>
@@ -60,30 +83,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-// Image upload option later
-{/* <label className={styles.picture}>
-<Image
-  src={
-    preview || userDetail.photoURL
-      ? preview || userDetail.photoURL
-      : defaultImage
-  }
-  width={150}
-  height={150}
-  alt="user-profile"
-  className={styles.image}
-  onClick={(e) => {
-    e.preventDefault();
-    fileInputRef.current.click();
-  }}
-/>
-<p>Upload a photo</p>
-<input
-  ref={fileInputRef}
-  type="file"
-  accept="image/*"
-  className={styles["image-input-file"]}
-  onChange={addProfilePicture}
-  disabled={loading ? true : false}
-/>
-</label> */}

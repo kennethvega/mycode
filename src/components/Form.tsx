@@ -6,8 +6,8 @@ const Form = ({ children }: FormProps) => {
 
 interface FormProps {
   children: React.ReactNode;
-  onClick?: () => void;
-  onSubmit?: () => void;
+  // onClick?: () => void;
+  // onSubmit?: () => void;
 }
 
 export default Form;
