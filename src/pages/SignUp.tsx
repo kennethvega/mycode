@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Button from "../components/Buttons/Button";
+import PrimaryButton from "../components/Buttons/PrimaryButton";
 import Form from "../components/Form";
 
 const SignUp = () => {
@@ -48,7 +48,7 @@ const SignUp = () => {
             placeholder="John Doe"
           />
         </label>
-        <Button disabled={false}>Sign up</Button>
+        <PrimaryButton disabled={false}>Sign up</PrimaryButton>
         <h3 className="form-message">
           Already have an account ?{"  "}
           {/* <Link href="/Login">Log in</Link> */}
@@ -60,3 +60,30 @@ const SignUp = () => {
 };
 
 export default SignUp;
+// Image upload option later
+{/* <label className={styles.picture}>
+<Image
+  src={
+    preview || userDetail.photoURL
+      ? preview || userDetail.photoURL
+      : defaultImage
+  }
+  width={150}
+  height={150}
+  alt="user-profile"
+  className={styles.image}
+  onClick={(e) => {
+    e.preventDefault();
+    fileInputRef.current.click();
+  }}
+/>
+<p>Upload a photo</p>
+<input
+  ref={fileInputRef}
+  type="file"
+  accept="image/*"
+  className={styles["image-input-file"]}
+  onChange={addProfilePicture}
+  disabled={loading ? true : false}
+/>
+</label> */}

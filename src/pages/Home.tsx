@@ -7,8 +7,8 @@ import {
   BsPerson,
 } from "react-icons/bs";
 
-import Button from "../components/Buttons/Button";
-import OutlineBtn from "../components/Buttons/OutlineBtn";
+import Button from "../components/Buttons/PrimaryButton";
+import SecondaryButton from "../components/Buttons/SecondaryButton";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 const Home = () => {
@@ -45,16 +45,16 @@ const Home = () => {
               documentation and share it to the world.
             </p>
             <Button disabled={false}>Demo account</Button>
-            <OutlineBtn disabled={false} onClick={() => navigate("/signup")}>
+            <SecondaryButton disabled={false} onClick={() => navigate("/signup")}>
               Create account
-            </OutlineBtn>
+            </SecondaryButton>
             <p onClick={() => navigate("/login")} className={styles.login}>
               Login
             </p>
           </>
         )}
 
-       <Footer/>
+        <Footer />
       </div>
       <div>right</div>
     </section>
