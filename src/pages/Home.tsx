@@ -10,6 +10,7 @@ import {
 import Button from "../components/Buttons/Button";
 import OutlineBtn from "../components/Buttons/OutlineBtn";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 const Home = () => {
   const loggedIn = false;
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ const Home = () => {
           </>
         )}
 
-        <p className="footer-mark">Built and designed by Kenneth Vega</p>
+       <Footer/>
       </div>
       <div>right</div>
     </section>
