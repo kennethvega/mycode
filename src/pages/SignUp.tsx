@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../components/Buttons/Button";
 import Form from "../components/Form";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   return (
     <div className="container margin-top-big">
       <Form>
@@ -50,7 +52,7 @@ const SignUp = () => {
         <h3 className="form-message">
           Already have an account ?{"  "}
           {/* <Link href="/Login">Log in</Link> */}
-          <a href="#">Log in</a>
+          <a onClick={() => navigate("/login")}>Log in</a>
         </h3>
       </Form>
     </div>

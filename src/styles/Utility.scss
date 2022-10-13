@@ -7,7 +7,7 @@
 // <---------- buttons ----------->
 .btn {
   cursor: pointer;
-  width: 20rem;
+  width: 100%;
   padding: 1.2rem 3rem;
   font-size: 1.4rem;
   font-weight: 600;
@@ -46,8 +46,10 @@
 .form-message {
   font-size: 1.8rem;
   margin-top: 2rem;
+  margin-bottom: 1rem;
   color: var(--text);
   font-weight: 400;
+  cursor: pointer;
 
   a {
     color: var(--text);
@@ -58,5 +60,22 @@
     &:hover {
       color: var(--hover-text);
     }
+  }
+}
+
+.demo-details {
+  padding: 2rem;
+  background-color: var(--background-color);
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+  p {
+    font-size: 1.7rem;
+    color: var(--text);
+    font-size: 400;
+  }
+  span {
+    font-size: 1.7rem;
+    color: var(--text);
+    font-size: 400;
   }
 }
