@@ -5,16 +5,13 @@ import Navbar from "./components/Header/Navbar";
 import "./styles/Global.scss";
 import "./styles/Utility.scss";
 import styles from "./App.module.scss";
-import SignUp from "./pages/Signup";
+import SignUp from "./pages/SignUp";
 
 function App() {
-  // theme light/dark toggle
-
   return (
     <div className={styles.app}>
       <BrowserRouter>
         <Navbar />
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

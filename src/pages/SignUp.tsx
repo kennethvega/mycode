@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
+import Error from "../components/Error";
 import Form from "../components/Form";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useSignup } from "../hooks/useSignUp";
@@ -10,14 +11,16 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
   const [fullName, setFullName] = useState("");
-  const { signup, error, isPending } = useSignup();
+  const [errorMessage, setErrorMessage] = useState("");
+  const { signUp, error, isPending } = useSignup();
   const navigate = useNavigate();
 
+  // submit signup function
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    await signup(email, password, userName);
-    console.log(error);
+    await signUp(email, password, userName);
   };
+
   return (
     <div className="container margin-top-big">
       <Form>
@@ -72,7 +75,7 @@ const SignUp = () => {
             Sign up
           </PrimaryButton>
         )}
-
+        {error && <Error error={error} />}
         <h3 className="form-message">
           Already have an account ?{"  "}
           <a onClick={() => navigate("/login")}>Log in</a>

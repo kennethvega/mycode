@@ -17,7 +17,7 @@ export const useSignup = () => {
   const [error, setError] = useState<null | string>(null);
   const [isPending, setIsPending] = useState(false);
 
-  const signup = async (email: string, password: string, username: string) => {
+  const signUp = async (email: string, password: string, username: string) => {
     setError(null);
     setIsPending(true);
     // check if username already exist
@@ -49,8 +49,12 @@ export const useSignup = () => {
         navigate("/");
         // toast.success("Successfully created an account🎊.");
       } catch (err: any) {
-        console.log(err.message);
-        setError(err.message);
+        // error message
+        if (err.message === "Firebase: Error (auth/email-already-in-use).") {
+          setError("Email is already taken. please try again");
+        } else {
+          setError(err.message);
+        }
         setIsPending(false);
         // toast.error(`${err.message}`);
       }
@@ -59,5 +63,5 @@ export const useSignup = () => {
       setIsPending(false);
     }
   };
-  return { signup, error, isPending };
+  return { signUp, error, isPending };
 };
