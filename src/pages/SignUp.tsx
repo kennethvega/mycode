@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
 import Error from "../components/Error";
@@ -11,19 +11,18 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
   const [fullName, setFullName] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
   const { signUp, error, isPending } = useSignup();
   const navigate = useNavigate();
 
   // submit signup function
-  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await signUp(email, password, userName);
   };
 
   return (
     <div className="container margin-top-big">
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <h2>Signup</h2>
         <label>
           <span>Email:</span>
@@ -35,7 +34,6 @@ const SignUp = () => {
             value={email}
           />
         </label>
-
         <label>
           <span>Password:</span>
           <input
@@ -67,13 +65,11 @@ const SignUp = () => {
           />
         </label>
         {isPending ? (
-          <PrimaryButton disabled={true}>
+          <PrimaryButton disabled={true} type="submit">
             <LoadingSpinner />
           </PrimaryButton>
         ) : (
-          <PrimaryButton disabled={false} onClick={handleSubmit}>
-            Sign up
-          </PrimaryButton>
+          <PrimaryButton disabled={false}>Sign up</PrimaryButton>
         )}
         {error && <Error error={error} />}
         <h3 className="form-message">

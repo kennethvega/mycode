@@ -1,13 +1,17 @@
 import styles from "./Form.module.scss";
 
-const Form = ({ children }: FormProps) => {
-  return <form className={styles.form}>{children}</form>;
+const Form = ({ children, onSubmit }: FormProps) => {
+  return (
+    <form onSubmit={onSubmit} className={styles.form}>
+      {children}
+    </form>
+  );
 };
 
 interface FormProps {
   children: React.ReactNode;
   // onClick?: () => void;
-  // onSubmit?: () => void;
+  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
 export default Form;
