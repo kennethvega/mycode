@@ -32,7 +32,9 @@ const Login = () => {
             // value={password}
           />
         </label>
-        <PrimaryButton disabled={false}>Login</PrimaryButton>
+        <PrimaryButton disabled={false} type="submit">
+          Login
+        </PrimaryButton>
         <h3 className="form-message">
           Don&apos;t have an account ? sign up here{" "}
           <a onClick={() => navigate("/signup")}>Signup</a>

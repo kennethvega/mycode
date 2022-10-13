@@ -1,3 +1,4 @@
+import { selectUser, login } from "./../features/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
@@ -5,14 +6,17 @@ import { checkUserWithUsername } from "../lib/firebase";
 import { setDoc, doc } from "firebase/firestore";
 import { db } from "../lib/firebase";
 import { auth } from "../lib/firebase.js";
-import { useAppSelector, useAppDispatch } from "../app/appHooks";
+
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../app/store";
 // types
 
 export const useSignup = () => {
   const navigate = useNavigate();
-  // global state
-  const user = useAppSelector((state) => state.auth.user);
-  const dispatch = useAppDispatch();
+
+  // global state action
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
   // hook state
   const [error, setError] = useState<null | string>(null);
   const [isPending, setIsPending] = useState(false);
@@ -40,13 +44,13 @@ export const useSignup = () => {
               photoURL: "",
             });
 
-            dispatch({ type: "LOGIN", payload: user });
-            // router.push("/");
+            dispatch(login(user));
+            navigate("/");
           }
         );
         setIsPending(false);
         setError(null);
-        navigate("/");
+
         // toast.success("Successfully created an account🎊.");
       } catch (err: any) {
         // error message

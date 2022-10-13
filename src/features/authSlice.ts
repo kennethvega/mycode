@@ -8,7 +8,7 @@ type initialState = {
   username: null | string;
 };
 const initialState: initialState = {
-  authIsReady: true,
+  authIsReady: false,
   user: null,
   username: null,
 };
@@ -18,7 +18,7 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      state.user = action.payload.user;
+      state.user = action.payload;
       state.username = action.payload?.displayName;
     },
     logout: (state) => {
@@ -37,5 +37,6 @@ export const { login, logout, authIsReady } = authSlice.actions;
 
 // // Other code such as selectors can use the imported `RootState` type
 export const selectUser = (state: RootState) => state.auth.user;
+export const selectAuth = (state: RootState) => state.auth.authIsReady;
 
 export default authSlice.reducer;
