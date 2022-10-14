@@ -22,12 +22,15 @@ const Navbar = () => {
             {logo}
           </h1>
           <div className={styles["navbar-right-content"]}>
-            {/* <IoMdAdd className={styles.icon} title="Create a document" /> */}
-            <Theme />
             {user ? (
-              <ProfileDropDown />
+              <>
+                <IoMdAdd className={styles.icon} />
+                <Theme />
+                <ProfileDropDown />
+              </>
             ) : (
               <>
+                <Theme />
                 <p onClick={() => navigate("/login")}>Login</p>
                 <SecondaryButton
                   disabled={false}
