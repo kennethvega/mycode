@@ -1,8 +1,12 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
 import Form from "../components/Form";
 const Login = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  
   return (
     <div className="container margin-top-big ">
       <Form>
@@ -17,9 +21,9 @@ const Login = () => {
           <input
             type="email"
             placeholder="johndoe@gmail.com"
-            // onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             required
-            // value={email}
+            value={email}
           />
         </label>
         <label>
@@ -28,8 +32,8 @@ const Login = () => {
             type="password"
             required
             placeholder="password"
-            // onChange={(e) => setPassword(e.target.value)}
-            // value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
           />
         </label>
         <PrimaryButton disabled={false} type="submit">

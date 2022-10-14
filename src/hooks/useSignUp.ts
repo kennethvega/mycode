@@ -7,15 +7,15 @@ import { setDoc, doc } from "firebase/firestore";
 import { db } from "../lib/firebase";
 import { auth } from "../lib/firebase.js";
 
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../app/store";
+import { useDispatch } from "react-redux";
+
 // types
 
 export const useSignup = () => {
   const navigate = useNavigate();
 
   // global state action
-  const user = useSelector(selectUser);
+
   const dispatch = useDispatch();
   // hook state
   const [error, setError] = useState<null | string>(null);
