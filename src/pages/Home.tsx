@@ -11,7 +11,17 @@ import Button from "../components/Buttons/PrimaryButton";
 import SecondaryButton from "../components/Buttons/SecondaryButton";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import { useLogin } from "../hooks/useLogin";
+import LoadingSpinner from "../components/LoadingSpinner";
 const Home = () => {
+  const { loginUser, error, isPending } = useLogin();
+  const demoEmail = import.meta.env.VITE_DEMO_EMAIL;
+  const demoPassword = import.meta.env.VITE_DEMO_PASSWORD;
+
+  const handleDemoLogin = async (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    await loginUser(demoEmail, demoPassword);
+  };
   const loggedIn = false;
   const navigate = useNavigate();
   return (
@@ -44,8 +54,20 @@ const Home = () => {
               platform for developers. Login to create your own coding
               documentation and share it to the world.
             </p>
-            <Button disabled={false}>Demo account</Button>
-            <SecondaryButton disabled={false} onClick={() => navigate("/signup")}>
+            {isPending ? (
+              <Button disabled={true}>
+                <LoadingSpinner />
+              </Button>
+            ) : (
+              <Button disabled={false} onClick={handleDemoLogin}>
+                Demo account
+              </Button>
+            )}
+
+            <SecondaryButton
+              disabled={false}
+              onClick={() => navigate("/signup")}
+            >
               Create account
             </SecondaryButton>
             <p onClick={() => navigate("/login")} className={styles.login}>

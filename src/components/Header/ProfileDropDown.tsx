@@ -17,7 +17,7 @@ const ProfileDropDown = () => {
   const user = useSelector(selectUser);
   const username = useSelector(selectUsername);
   const dispatch = useDispatch();
-  console.log(defaultImage);
+
   const handleLogout = () => {
     dispatch(logout());
   };
