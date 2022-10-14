@@ -4,8 +4,13 @@ import SecondaryButton from "../Buttons/SecondaryButton";
 
 import styles from "./Navbar.module.scss";
 import Theme from "./Theme";
+// redux
+import { useSelector } from "react-redux";
+import { selectUser } from "../../features/authSlice";
+import ProfileDropDown from "./ProfileDropDown";
 
 const Navbar = () => {
+  const user = useSelector(selectUser);
   const logo = "My< >";
 
   const navigate = useNavigate();
@@ -19,13 +24,19 @@ const Navbar = () => {
           <div className={styles["navbar-right-content"]}>
             {/* <IoMdAdd className={styles.icon} title="Create a document" /> */}
             <Theme />
-            <p onClick={() => navigate("/login")}>Login</p>
-            <SecondaryButton
-              disabled={false}
-              onClick={() => navigate("/signup")}
-            >
-              Create account
-            </SecondaryButton>
+            {user ? (
+              <ProfileDropDown />
+            ) : (
+              <>
+                <p onClick={() => navigate("/login")}>Login</p>
+                <SecondaryButton
+                  disabled={false}
+                  onClick={() => navigate("/signup")}
+                >
+                  Create account
+                </SecondaryButton>
+              </>
+            )}
           </div>
         </div>
       </div>

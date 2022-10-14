@@ -37,6 +37,7 @@ export const { login, logout, authIsReady } = authSlice.actions;
 
 // // Other code such as selectors can use the imported `RootState` type
 export const selectUser = (state: RootState) => state.auth.user;
+export const selectUsername = (state: RootState) => state.auth.username;
 export const selectAuth = (state: RootState) => state.auth.authIsReady;
 
 export default authSlice.reducer;
