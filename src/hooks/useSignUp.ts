@@ -1,4 +1,4 @@
-import { selectUser, login } from "./../features/authSlice";
+import {  login } from "./../features/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
