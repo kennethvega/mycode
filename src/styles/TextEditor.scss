@@ -1,0 +1,136 @@
+.text-editor {
+  border-radius: 5px;
+  border: 1px solid var(--line-color);
+}
+.menu-bar {
+  padding-bottom: 5px;
+  padding-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  & button {
+    font-size: 18px;
+    margin: 0.7rem;
+    margin-right: 1.5rem;
+    padding: 2px 3px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background: none;
+  }
+}
+
+button.is-active {
+  background: var(--gray-bg);
+  padding: 2px 3px;
+  border-radius: 2px;
+}
+button {
+  svg {
+    font-size: 15px;
+    color: var(--text);
+    font-weight: 400;
+  }
+}
+
+.ProseMirror {
+  min-height: 40rem;
+  max-height: 40rem;
+  border-top: 1px solid var(--line-color);
+  padding: 1.5rem;
+  overflow: scroll;
+
+  > * + * {
+    margin-top: 0.75em;
+  }
+
+  ul,
+  ol {
+    padding: 0 1rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.1;
+  }
+
+  code {
+    background-color: var(--gray-bg);
+    color: var(--text);
+    font-size: 18px;
+    overflow: scroll;
+
+    object-fit: cover;
+  }
+
+  pre {
+    font-size: 18px;
+    background-color: var(--background-color);
+    color: var(--text);
+    font-family: "Inter", sans-serif;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    overflow: scroll;
+
+    object-fit: cover;
+
+    code {
+      color: inherit;
+      padding: 0;
+      background: none;
+      font-size: 18px;
+    }
+  }
+
+  hr {
+    border: none;
+    border-top: 2px solid var(--line-color);
+    margin: 2rem 0;
+  }
+}
+.blockquote {
+  display: none;
+}
+
+p {
+  font-size: 18px;
+}
+code {
+  background-color: var(--background-color);
+  color: var(--text);
+  font-size: 18px;
+  word-wrap: break-word;
+}
+
+pre {
+  font-size: 18px;
+  background: var(--gray-bg);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  overflow: scroll;
+
+  object-fit: cover;
+  code {
+    color: inherit;
+    padding: 0;
+    background: none;
+    font-size: 1.8rem;
+  }
+}
+
+hr {
+  border: none;
+  border-top: 2px solid var(--line-color);
+  margin: 2rem 0;
+}
+li {
+  font-size: 18px;
+}

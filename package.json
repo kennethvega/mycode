@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.6",
+    "@tiptap/extension-underline": "^2.0.0-beta.199",
+    "@tiptap/react": "^2.0.0-beta.199",
+    "@tiptap/starter-kit": "^2.0.0-beta.199",
     "firebase": "^9.11.0",
     "next-themes": "^0.2.1",
     "react": "^18.2.0",

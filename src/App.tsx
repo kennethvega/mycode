@@ -3,11 +3,13 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 // style
 import "./styles/Global.scss";
 import "./styles/Utility.scss";
+import "./styles/TextEditor.scss";
 import styles from "./App.module.scss";
 // pages
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
+import CreateDocument from "./pages/CreateDocument";
 //
 import Navbar from "./components/Header/Navbar";
 // firebase
@@ -37,6 +39,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/create" element={<CreateDocument />} />
         </Routes>
       </BrowserRouter>
     </div>
