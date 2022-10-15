@@ -13,11 +13,17 @@ import {
 } from "firebase/firestore";
 import { db } from "../lib/firebase";
 import { useNavigate } from "react-router-dom";
+import TagsInput from "../components/TagsInput";
 const CreateDocument = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [bodyContent, setBodyContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [tags, setTags] = useState<string[]>([]);
+
+
+
+
 
   const navigate = useNavigate();
 
@@ -50,38 +56,6 @@ const CreateDocument = () => {
     setIsLoading(false);
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setIsLoading(true);
-  //   // firebase query
-  //   const colRef = collection(db, "users", `${user.uid}`, "posts");
-  //   await addDoc(colRef, {
-  //     title: title,
-  //     summary: summary,
-  //     content: tiptapContent,
-  //     username: user.displayName,
-  //     slug: "",
-  //     published: publicPost,
-  //     createdAt: serverTimestamp(),
-  //     updatedAt: serverTimestamp(),
-  //     id: user.uid,
-  //     photoURL: user.photoURL,
-  //   })
-  //     .then(async (docRef) => {
-  //       // console.log(docRef.id);
-  //       await updateDoc(docRef, {
-  //         slug: docRef.id,
-  //       });
-  //       router.push("/");
-  //     })
-
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  //   setIsLoading(false);
-  //   toast.success("Successfully created post.");
-  // };
-
   return (
     <div className="container margin-top-big ">
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -97,20 +71,8 @@ const CreateDocument = () => {
           />
         </label>
         <label>
-          <span>Short description:</span>
-          <textarea
-            required
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            style={{
-              height: "8rem",
-              width: "100%",
-              backgroundColor: "var(--background-color)",
-              fontSize: "1.7rem",
-              fontFamily: "Inter, sans-serif",
-            }}
-            maxLength={180}
-          />
+          <span>Tags:</span>
+          <TagsInput tags={tags} setTags={setTags} />
         </label>
         <label>
           <span>Content:</span>

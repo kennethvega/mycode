@@ -1,0 +1,38 @@
+.tags-input-container {
+  border: 1px solid var(--line-color);
+  border-radius: 0.5rem;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.tag-item {
+  background-color: var(--hover-gray-bg);
+  padding: 0 0.75rem;
+  border-radius: 0.5rem;
+  margin: 0px;
+  display: inline-flex;
+  align-items: center;
+
+  & .close {
+    height: 2rem;
+    width: 2rem;
+    margin-left: 0.7rem;
+    cursor: pointer;
+    color: var(--text);
+    font-weight: 900;
+    border-radius: 50%;
+  }
+  &.text {
+    font-size: 1.6rem;
+  }
+}
+.input {
+  flex-grow: 1;
+  padding: 0.5rem 0;
+  border: none !important;
+  outline: none !important;
+  width: 0 !important;
+}
