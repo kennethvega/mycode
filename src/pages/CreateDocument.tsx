@@ -38,7 +38,7 @@ const CreateDocument = () => {
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
       id: user?.uid,
-      photoURL: user?.photoURL,
+      photoURL: user?.photoURL ? user.photoURL : "",
     })
       .then(async (docRef) => {
         await updateDoc(docRef, {

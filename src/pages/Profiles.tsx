@@ -1,7 +1,7 @@
-import styles from "./Profiles.module.scss";
+
 
 const Profiles = () => {
-  return <div>Profiles</div>;
+  return <div className="container margin-top-big">Profiles</div>;
 };
 
 export default Profiles;

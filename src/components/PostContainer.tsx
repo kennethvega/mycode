@@ -1,9 +1,24 @@
 import styles from "./PostContainer.module.scss";
 import defaultImage from "../assets/blank profile.jpg";
 import { RiHeart2Line } from "react-icons/ri";
-import { FaRegComment } from "react-icons/fa";
+
 import { CgComment } from "react-icons/cg";
-const PostContainer = () => {
+
+type PostContainerProps = {
+  document: {
+    content: string;
+    createdAt: number;
+    updatedAt: number;
+    id: string;
+    photoURL: string | null;
+    slug: string;
+    tags: string[];
+    title: string;
+    username: string;
+  };
+};
+
+const PostContainer = ({ document }: PostContainerProps) => {
   return (
     <div className={styles["post-container"]}>
       <img
@@ -13,7 +28,7 @@ const PostContainer = () => {
       />
       <div className={styles["text-container"]}>
         <div className={styles["post-header"]}>
-          <h2>Kenneth Vega</h2>
+          <h2>{document.username}</h2>
           <span className={styles.date}>October 14 2022</span>
         </div>
         <div className={styles["post-body"]}>

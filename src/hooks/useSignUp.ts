@@ -1,8 +1,8 @@
-import {  login } from "./../features/authSlice";
+import { login } from "./../features/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { checkUserWithUsername } from "../lib/firebase";
+import { checkUserWithUsername } from "../services/firebase";
 import { setDoc, doc } from "firebase/firestore";
 import { db } from "../lib/firebase";
 import { auth } from "../lib/firebase.js";
@@ -21,7 +21,12 @@ export const useSignup = () => {
   const [error, setError] = useState<null | string>(null);
   const [isPending, setIsPending] = useState(false);
 
-  const signUp = async (email: string, password: string, username: string) => {
+  const signUp = async (
+    email: string,
+    password: string,
+    username: string,
+    fullName: string
+  ) => {
     setError(null);
     setIsPending(true);
     // check if username already exist
@@ -42,6 +47,7 @@ export const useSignup = () => {
               dateCreated: Date.now(),
               bio: "",
               photoURL: "",
+              fullName: fullName,
             });
 
             dispatch(login(user));

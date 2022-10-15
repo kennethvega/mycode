@@ -30,13 +30,3 @@ const storage = getStorage(app);
 
 export { app, db, auth, storage };
 
-// <---------------------Helper functions-------------------->
-// check if username already exist
-export async function checkUserWithUsername(username: string | undefined) {
-  const q = query(
-    collection(db, "users"),
-    where("username", "==", username?.toLowerCase())
-  );
-  const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.length > 0;
-}

@@ -19,6 +19,7 @@ import { onAuthStateChanged } from "firebase/auth";
 // global state redux
 import { useDispatch, useSelector } from "react-redux";
 import { authIsReady, selectAuth, selectUser } from "./features/authSlice";
+import Profiles from "./pages/Profiles";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,11 +28,11 @@ function App() {
   // check if authentication is ready
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
-      // dispatch({ type: "AUTH_IS_READY", payload: user });
       dispatch(authIsReady(user));
       unsub();
     });
   }, []);
+  // fetch user and posts
 
   return (
     <div className={styles.app}>
@@ -45,6 +46,7 @@ function App() {
             path="/create"
             element={!user ? <Login /> : <CreateDocument />}
           />
+          <Route path="/profile/:username" element={<Profiles />} />
         </Routes>
       </BrowserRouter>
     </div>
