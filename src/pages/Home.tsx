@@ -7,7 +7,7 @@ import Button from "../components/Buttons/PrimaryButton";
 import PostFeed from "../components/PostFeed";
 import Footer from "../components/Footer";
 import SecondaryButton from "../components/Buttons/SecondaryButton";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
 // redux
 import { useSelector } from "react-redux";
@@ -67,16 +67,12 @@ const Home = () => {
                 Demo account
               </Button>
             )}
-
-            <SecondaryButton
-              disabled={false}
-              onClick={() => navigate("/signup")}
-            >
-              Create account
-            </SecondaryButton>
-            <p onClick={() => navigate("/login")} className={styles.login}>
+            <Link to="/signup" className={styles.link}>
+              <SecondaryButton disabled={false}>Create account</SecondaryButton>
+            </Link>
+            <Link to="/login" className={styles.login}>
               Login
-            </p>
+            </Link>
           </>
         )}
 

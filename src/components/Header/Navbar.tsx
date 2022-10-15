@@ -1,6 +1,6 @@
 import Tippy from "@tippyjs/react";
 import { IoMdAdd } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SecondaryButton from "../Buttons/SecondaryButton";
 
 import styles from "./Navbar.module.scss";
@@ -14,25 +14,21 @@ const Navbar = () => {
   const user = useSelector(selectUser);
   const logo = "My< >";
 
-  const navigate = useNavigate();
   return (
     <nav className={styles.container}>
       <div className="container">
         <div className={styles.content}>
-          <h1 className={styles.logo} onClick={() => navigate("/")}>
-            {logo}
-          </h1>
+          <Link to="/">
+            <h1 className={styles.logo}>{logo}</h1>
+          </Link>
 
           <div className={styles["navbar-right-content"]}>
             {user ? (
               <>
                 <Tippy content="Create account">
-                  <div>
-                    <IoMdAdd
-                      className={styles.icon}
-                      onClick={() => navigate("/create")}
-                    />
-                  </div>
+                  <Link to="/create">
+                    <IoMdAdd className={styles.icon} />
+                  </Link>
                 </Tippy>
                 <Theme />
                 <ProfileDropDown />
@@ -40,13 +36,14 @@ const Navbar = () => {
             ) : (
               <>
                 <Theme />
-                <p onClick={() => navigate("/login")}>Login</p>
-                <SecondaryButton
-                  disabled={false}
-                  onClick={() => navigate("/signup")}
-                >
-                  Create account
-                </SecondaryButton>
+                <Link className={styles.login} to="/login">
+                  Login
+                </Link>
+                <Link to="/signup">
+                  <SecondaryButton disabled={false}>
+                    Create account
+                  </SecondaryButton>
+                </Link>
               </>
             )}
           </div>

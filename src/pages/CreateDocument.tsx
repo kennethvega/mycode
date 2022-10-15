@@ -16,14 +16,10 @@ import { useNavigate } from "react-router-dom";
 import TagsInput from "../components/TagsInput";
 const CreateDocument = () => {
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+
   const [bodyContent, setBodyContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [tags, setTags] = useState<string[]>([]);
-
-
-
-
 
   const navigate = useNavigate();
 
@@ -35,7 +31,7 @@ const CreateDocument = () => {
     const colRef = collection(db, "users", `${user?.uid}`, "posts");
     await addDoc(colRef, {
       title: title,
-      summary: description,
+      tags: tags,
       content: bodyContent,
       username: user?.displayName,
       slug: "",

@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-
 // style
 import "./styles/Global.scss";
 import "./styles/Utility.scss";

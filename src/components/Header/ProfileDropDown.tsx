@@ -8,11 +8,11 @@ import { logout, selectUser, selectUsername } from "../../features/authSlice";
 import { BsFillPersonFill } from "react-icons/bs";
 import { IoMdLogOut } from "react-icons/io";
 import { AiFillDownCircle } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ProfileDropDown = () => {
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
+
   // global auth state
   const user = useSelector(selectUser);
   const username = useSelector(selectUsername);
@@ -42,13 +42,12 @@ const ProfileDropDown = () => {
           onClick={() => setOpen(!open)}
         >
           <div className={styles.dropdown}>
-            {/* edit this to react router dynamic page*/}
-            <div
-              onClick={() => navigate(`/${user?.displayName}`)}
+            <Link
+              to={`/profile/${user?.displayName}`}
               className={styles["dropdown-item"]}
             >
               <BsFillPersonFill /> <span>Profile</span>
-            </div>
+            </Link>
 
             <div className={styles["dropdown-item"]} onClick={handleLogout}>
               <IoMdLogOut /> <span>Logout</span>

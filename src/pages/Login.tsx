@@ -1,5 +1,5 @@
 import { useState, FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
 import Error from "../components/Error";
 import Form from "../components/Form";
@@ -7,7 +7,6 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import { useLogin } from "../hooks/useLogin";
 
 const Login = () => {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { loginUser, error, isPending } = useLogin();
@@ -60,7 +59,7 @@ const Login = () => {
         {error && <Error error={error} />}
         <h3 className="form-message">
           Don&apos;t have an account ? sign up here{" "}
-          <a onClick={() => navigate("/signup")}>Signup</a>
+          <Link to="/signup">Signup</Link>
         </h3>
       </Form>
     </div>
