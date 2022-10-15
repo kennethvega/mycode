@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+
 // style
 import "./styles/Global.scss";
 import "./styles/Utility.scss";
 import "./styles/TextEditor.scss";
 import styles from "./App.module.scss";
+import "tippy.js/dist/tippy.css";
 // pages
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -22,6 +24,7 @@ import { authIsReady, selectAuth, selectUser } from "./features/authSlice";
 function App() {
   const dispatch = useDispatch();
   const isAuthReady = useSelector(selectAuth);
+  const user = useSelector(selectUser);
   // check if authentication is ready
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
@@ -37,9 +40,12 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/create" element={<CreateDocument />} />
+          <Route path="/login" element={user ? <Home /> : <Login />} />
+          <Route path="/signup" element={user ? <Home /> : <SignUp />} />
+          <Route
+            path="/create"
+            element={!user ? <Login /> : <CreateDocument />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,20 +1,18 @@
 import styles from "./Home.module.scss";
-import { AiOutlineHome, AiFillHome } from "react-icons/ai";
-import {
-  BsFileEarmarkCodeFill,
-  BsFileEarmarkCode,
-  BsFillPersonFill,
-  BsPerson,
-} from "react-icons/bs";
-import { NavLink } from "react-router-dom";
+import { AiFillHome } from "react-icons/ai";
+import { BsFileEarmarkCodeFill, BsFillPersonFill } from "react-icons/bs";
+// components
+import LoadingSpinner from "../components/LoadingSpinner";
 import Button from "../components/Buttons/PrimaryButton";
+import PostFeed from "../components/PostFeed";
+import Footer from "../components/Footer";
 import SecondaryButton from "../components/Buttons/SecondaryButton";
 import { useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
 import { useLogin } from "../hooks/useLogin";
-import LoadingSpinner from "../components/LoadingSpinner";
+// redux
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/authSlice";
+
 const Home = () => {
   const { loginUser, error, isPending } = useLogin();
   const user = useSelector(selectUser);
@@ -39,17 +37,19 @@ const Home = () => {
                 Home
               </p>
               <p>
-                <BsFileEarmarkCode />
+                <BsFileEarmarkCodeFill />
                 My documents
               </p>
               <p>
-                <BsPerson />
+                <BsFillPersonFill />
                 Profile
               </p>
             </div>
             {/* add functionality later */}
 
-            <Button disabled={false}>Create a document</Button>
+            <Button disabled={false} onClick={() => navigate("/create")}>
+              Create a document
+            </Button>
           </>
         ) : (
           <>
@@ -82,7 +82,7 @@ const Home = () => {
 
         <Footer />
       </div>
-      <div>right</div>
+      <PostFeed />
     </section>
   );
 };

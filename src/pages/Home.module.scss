@@ -3,8 +3,8 @@
   margin: 8rem auto;
   padding: 0 2rem;
   display: grid;
-  grid-template-columns: 27rem 1fr;
-  gap: 1rem;
+  grid-template-columns: 27% 1fr;
+  gap: 1.3rem;
 }
 .side-bar {
   background-color: var(--gray-bg);
@@ -12,9 +12,11 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: space-around;
   gap: 2rem;
   padding: 2rem;
   border: 1px solid var(--line-color);
+  max-height: 43rem;
 }
 .welcome-message {
   font-size: 1.7rem;
@@ -29,7 +31,7 @@
     margin-bottom: 2rem;
     display: flex;
     align-items: center;
-    gap: 4rem;
+    gap: 2rem;
 
     padding: 1rem;
     border-radius: 0.5rem;

@@ -1,3 +1,4 @@
+import Tippy from "@tippyjs/react";
 import { IoMdAdd } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import SecondaryButton from "../Buttons/SecondaryButton";
@@ -21,10 +22,18 @@ const Navbar = () => {
           <h1 className={styles.logo} onClick={() => navigate("/")}>
             {logo}
           </h1>
+
           <div className={styles["navbar-right-content"]}>
             {user ? (
               <>
-                <IoMdAdd className={styles.icon} />
+                <Tippy content="Create account">
+                  <div>
+                    <IoMdAdd
+                      className={styles.icon}
+                      onClick={() => navigate("/create")}
+                    />
+                  </div>
+                </Tippy>
                 <Theme />
                 <ProfileDropDown />
               </>
