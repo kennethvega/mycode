@@ -46,18 +46,17 @@ const EditProfile = () => {
       // fetch user data
       const userQuery = doc(db, "users", `${id}`);
       const userSnap = await getDoc(userQuery);
-      const user = userSnap.data();
-      setUserDetails(user);
-      setUsername(user?.username);
-      setBio(user?.bio);
-      setPhotoUrl(user?.photoURL);
+      const userData = userSnap.data();
+      setUserDetails(userData);
+      setUsername(userData?.username);
+      setBio(userData?.bio);
+      setPhotoUrl(userData?.photoURL);
     };
-
     fetchData();
   }, []);
 
   // ------update profile logic-------
-  // add image
+  // add image to preview in UI logic
   const addProfilePicture = (e: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
     if (!e.target.files) return;
@@ -69,10 +68,9 @@ const EditProfile = () => {
       setPreview(readerEvent.target?.result);
     };
   };
-
-  // update function logic
+  // update function to call in handleSubmit
   const updateUserProfile = async () => {
-    let imageURL: any;
+    let imageURL: string | null;
     const userRef = doc(db, "users", `${user?.uid}`);
     const fileRef = ref(storage, userDetails?.id);
     if (profilePicture) {
@@ -108,11 +106,10 @@ const EditProfile = () => {
         })
       )
     );
-
     setLoading(false);
     setError("");
   };
-
+  // submit edit
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (userDetails?.username === username) {

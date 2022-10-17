@@ -1,35 +1,23 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Profiles.module.scss";
 import defaultImage from "../assets/blank profile.jpg";
 import {
   collection,
-  collectionGroup,
   doc,
   DocumentData,
-  DocumentReference,
   getDoc,
   getDocs,
-  limit,
-  onSnapshot,
   orderBy,
   query,
-  setDoc,
-  updateDoc,
-  where,
 } from "firebase/firestore";
 import { Link, useParams } from "react-router-dom";
-import { db, storage } from "../lib/firebase";
-import { checkUserWithUsername, postToJSON } from "../services/firebase";
+import { db } from "../lib/firebase";
+import { postToJSON } from "../services/firebase";
 import { Document } from "../ts/types/document";
 // components
 import PostItem from "../components/PostItem";
 import Button from "../components/Buttons/PrimaryButton";
-import Modal from "../components/utility/Modal";
-import Form from "../components/utility/Form";
-import { useSelector } from "react-redux";
-import { selectUser } from "../features/authSlice";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { updateProfile } from "firebase/auth";
+
 import Container from "../components/utility/Container";
 
 const Profiles = () => {
@@ -71,8 +59,10 @@ const Profiles = () => {
 
           <h1 className={styles.name}>{userDetails?.username}</h1>
 
-          <p className={styles.bio}>{userDetails?.bio}</p>
-          <p>Documents: {userDetails?.length}</p>
+          <p className={styles.bio}>{`${
+            userDetails?.bio ? `Bio: ${userDetails?.bio}` : " "
+          }`}</p>
+          <p>Documents: {documents?.length}</p>
           <Link to={`/edit-profile/${id}`}>
             <Button type="button" disabled={false}>
               Edit profile

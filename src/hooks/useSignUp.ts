@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { checkUserWithUsername } from "../services/firebase";
-import { setDoc, doc } from "firebase/firestore";
-import { db } from "../lib/firebase";
+import { setDoc, doc, updateDoc } from "firebase/firestore";
+import { db, storage } from "../lib/firebase";
 import { auth } from "../lib/firebase.js";
 
 import { useDispatch } from "react-redux";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 // types
 
@@ -21,7 +22,12 @@ export const useSignup = () => {
   const [error, setError] = useState<null | string>(null);
   const [isPending, setIsPending] = useState(false);
 
-  const signUp = async (email: string, password: string, username: string) => {
+  const signUp = async (
+    email: string,
+    password: string,
+    username: string,
+    profilePicture: any
+  ) => {
     setError(null);
     setIsPending(true);
     // check if username already exist
@@ -31,17 +37,30 @@ export const useSignup = () => {
         // 3.signup user
         await createUserWithEmailAndPassword(auth, email, password).then(
           async ({ user }) => {
+            // upload image to storage
+            let imageURL: string | null;
+            const userRef = doc(db, "users", `${user?.uid}`);
+            const fileRef = ref(storage, `${user?.uid}`);
+
+            if (profilePicture) {
+              await uploadBytes(fileRef, profilePicture);
+              imageURL = await getDownloadURL(fileRef);
+            } else {
+              imageURL = " ";
+            }
+            // update both profile
             await updateProfile(user, {
               displayName: username,
+              photoURL: imageURL,
             });
-            // add to database users
+
             await setDoc(doc(db, "users", `${user.uid}`), {
               id: user.uid,
               username: username.toLowerCase(),
               emailAddress: email.toLowerCase(),
               dateCreated: Date.now(),
               bio: "",
-              photoURL: "",
+              photoURL: imageURL,
             });
 
             dispatch(login(user));
