@@ -17,15 +17,27 @@ import { postToJSON } from "../services/firebase";
 import PostItem from "../components/PostItem";
 import Button from "../components/Buttons/PrimaryButton";
 import { Document } from "../ts/types/document";
+import Modal from "../components/Modal";
+import Form from "../components/Form";
 const Profiles = () => {
   const { id } = useParams();
   const [userDetails, setUserDetails] = useState<DocumentData | undefined>();
   const [documents, setDocuments] = useState<DocumentData | undefined>();
+  // edit state
+  const [openModal, setOpenModal] = useState(false);
+  const [username, setUsername] = useState<string | undefined>();
+  const [photoUrl, setPhotoUrl] = useState<string | undefined>();
+  const [bio, setBio] = useState<string | undefined>();
+
   // fetch user details realtime
   useEffect(() => {
     // realtime data on user
     onSnapshot(doc(db, "users", `${id}`), (doc) => {
-      setUserDetails(doc.data());
+      const data = doc.data();
+      setUserDetails(data);
+      setPhotoUrl(data?.photoURL);
+      setUsername(data?.username);
+      setBio(data?.bio);
     });
 
     // get users posts one time
@@ -41,7 +53,7 @@ const Profiles = () => {
 
     fetchData();
   }, []);
-  // console.log(documents);
+
   return (
     <div className="container margin-top-big">
       <div className={styles["profile-grid"]}>
@@ -56,7 +68,11 @@ const Profiles = () => {
 
           <p className={styles.bio}>{userDetails?.bio}</p>
           <p>Documents: {userDetails?.length}</p>
-          <Button type="submit" disabled={false}>
+          <Button
+            type="submit"
+            disabled={false}
+            onClick={() => setOpenModal(true)}
+          >
             Edit profile
           </Button>
         </div>
@@ -70,6 +86,15 @@ const Profiles = () => {
           })}
         </div>
       </div>
+      <Modal openModal={openModal} onClose={() => setOpenModal(false)}>
+        <h3 className={styles.heading}>Update Profile</h3>
+        <Form>
+          <label>
+            <span>Username:</span>
+            <input type="text" onChange={(e) => setUsername(e.target.value)} />
+          </label>
+        </Form>
+      </Modal>
     </div>
   );
 };
