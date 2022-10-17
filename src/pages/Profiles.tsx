@@ -28,6 +28,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../features/authSlice";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
+import Container from "../components/utility/Container";
 
 const Profiles = () => {
   const { id } = useParams();
@@ -156,7 +157,7 @@ const Profiles = () => {
   };
 
   return (
-    <div className="container margin-top-big">
+    <Container>
       <div className={styles["profile-grid"]}>
         {/* edit profile modal */}
         <Modal openModal={openModal} onClose={() => setOpenModal(false)}>
@@ -225,15 +226,11 @@ const Profiles = () => {
         </div>
         <div className={styles["posts-container"]}>
           {documents?.map((document: Document) => {
-            return (
-              <div key={document.slug}>
-                <PostItem document={document} />
-              </div>
-            );
+            return <PostItem document={document} key={document.slug} />;
           })}
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

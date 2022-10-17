@@ -31,11 +31,7 @@ const PostFeed = () => {
   return (
     <div className={styles["posts-container"]}>
       {documents?.map((document: Document) => {
-        return (
-          <div key={document.slug}>
-            <PostItem document={document} />
-          </div>
-        );
+        return <PostItem document={document} key={document.slug} />;
       })}
     </div>
   );

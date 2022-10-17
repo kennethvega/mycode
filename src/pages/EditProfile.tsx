@@ -1,7 +1,8 @@
 import React from "react";
+import Container from "../components/utility/Container";
 
 const EditProfile = () => {
-  return <div>EditProfile</div>;
+  return <Container>EditProfile</Container>;
 };
 
 export default EditProfile;

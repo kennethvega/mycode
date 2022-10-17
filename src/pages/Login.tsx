@@ -1,6 +1,7 @@
 import { useState, FormEvent } from "react";
 import { Link } from "react-router-dom";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
+import Container from "../components/utility/Container";
 import Error from "../components/utility/Error";
 import Form from "../components/utility/Form";
 import LoadingSpinner from "../components/utility/LoadingSpinner";
@@ -18,7 +19,7 @@ const Login = () => {
   };
 
   return (
-    <div className="container margin-top-big ">
+    <Container>
       <Form onSubmit={handleLogin}>
         <h2>Login</h2>
         <div className="demo-details">
@@ -62,7 +63,7 @@ const Login = () => {
           <Link to="/signup">Signup</Link>
         </h3>
       </Form>
-    </div>
+    </Container>
   );
 };
 

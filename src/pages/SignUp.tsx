@@ -6,6 +6,7 @@ import Error from "../components/utility/Error";
 import Form from "../components/utility/Form";
 import LoadingSpinner from "../components/utility/LoadingSpinner";
 import { useSignup } from "../hooks/useSignUp";
+import Container from "../components/utility/Container";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -21,7 +22,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="container margin-top-big">
+    <Container>
       <Form onSubmit={handleSubmit}>
         <h2>Signup</h2>
         <label>
@@ -68,7 +69,7 @@ const SignUp = () => {
           <Link to="/login">Log in</Link>
         </h3>
       </Form>
-    </div>
+    </Container>
   );
 };
 

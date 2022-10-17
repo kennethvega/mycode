@@ -14,6 +14,7 @@ import {
 import { db } from "../lib/firebase";
 import { useNavigate } from "react-router-dom";
 import TagsInput from "../components/TagsInput";
+import Container from "../components/utility/Container";
 const CreateDocument = () => {
   const [title, setTitle] = useState("");
 
@@ -53,7 +54,7 @@ const CreateDocument = () => {
   };
 
   return (
-    <div className="container margin-top-big ">
+    <Container>
       <form className={styles.form} onSubmit={handleSubmit}>
         <h2>Create a document</h2>
         <label>
@@ -89,7 +90,7 @@ const CreateDocument = () => {
           </PrimaryButton>
         )}
       </form>
-    </div>
+    </Container>
   );
 };
 
