@@ -1,3 +1,4 @@
+import defaultImage from "../../assets/blank profile.jpg";
 import { FormEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
@@ -19,6 +20,7 @@ const SignUp = () => {
     await signUp(email, password, userName);
   };
 
+ 
   return (
     <div className="container margin-top-big">
       <Form onSubmit={handleSubmit}>

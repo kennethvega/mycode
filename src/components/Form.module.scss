@@ -30,11 +30,14 @@
     color: var(--text);
     width: 100%;
     border: 1px solid var(--line-color);
-    background-color: var(--background-color);
+    background-color: var(--gray-bg);
     border-radius: 0.5rem;
   }
   & textarea {
     color: var(--text);
     border: 1px solid var(--line-color);
+    width: 100%;
+    font-size: 1.8rem;
+    height: 10rem;
   }
 }

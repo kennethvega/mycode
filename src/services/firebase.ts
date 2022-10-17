@@ -7,8 +7,8 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { db } from "../lib/firebase";
-
+import { db, storage } from "../lib/firebase";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 // check if username already exist
 export async function checkUserWithUsername(username: string | undefined) {
   const q = query(
@@ -19,7 +19,6 @@ export async function checkUserWithUsername(username: string | undefined) {
   return querySnapshot.docs.length > 0;
 }
 
-
 // convert post to json
 export function postToJSON(doc: DocumentSnapshot) {
   const data = doc.data();
@@ -28,4 +27,10 @@ export function postToJSON(doc: DocumentSnapshot) {
     createdAt: data?.createdAt.toMillis(),
     updatedAt: data?.updatedAt.toMillis(),
   };
+}
+
+storage;
+export async function upload(file: any, userDetail: any) {
+  const fileRef = ref(storage, userDetail.userId);
+  const snapshot = await uploadBytes(fileRef, file);
 }

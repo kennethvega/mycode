@@ -11,7 +11,7 @@ const PostItem = ({ document: post }: PostItemProps) => {
   return (
     <div className={styles["post-container"]}>
       <img
-        src={defaultImage}
+        src={post.photoURL ? post.photoURL : defaultImage}
         alt="author's image"
         className={styles["image"]}
       />
