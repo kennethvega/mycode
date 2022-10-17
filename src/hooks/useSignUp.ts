@@ -21,12 +21,7 @@ export const useSignup = () => {
   const [error, setError] = useState<null | string>(null);
   const [isPending, setIsPending] = useState(false);
 
-  const signUp = async (
-    email: string,
-    password: string,
-    username: string,
-    fullName: string
-  ) => {
+  const signUp = async (email: string, password: string, username: string) => {
     setError(null);
     setIsPending(true);
     // check if username already exist
@@ -47,7 +42,6 @@ export const useSignup = () => {
               dateCreated: Date.now(),
               bio: "",
               photoURL: "",
-              fullName: fullName,
             });
 
             dispatch(login(user));

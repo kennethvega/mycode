@@ -1,9 +1,9 @@
 .home-container {
-  max-width: 100rem;
+  max-width: 110rem;
   margin: 8rem auto;
   padding: 0 2rem;
   display: grid;
-  grid-template-columns: 27% 1fr;
+  grid-template-columns: 30% 1fr;
   gap: 1.3rem;
 }
 .side-bar {
@@ -16,7 +16,7 @@
   gap: 2rem;
   padding: 2rem;
   border: 1px solid var(--line-color);
-  max-height: 43rem;
+  max-height: 41rem;
 }
 .welcome-message {
   font-size: 1.7rem;

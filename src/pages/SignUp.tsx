@@ -10,13 +10,13 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
-  const [fullName, setFullName] = useState("");
+
   const { signUp, error, isPending } = useSignup();
 
   // submit signup function
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await signUp(email, password, userName,fullName);
+    await signUp(email, password, userName);
   };
 
   return (
@@ -48,21 +48,12 @@ const SignUp = () => {
           <input
             type="text"
             required
-            placeholder="permanent username"
+            placeholder="John Doe"
             onChange={(e) => setUserName(e.target.value)}
             value={userName}
           />
         </label>
-        <label>
-          <span>Full name:</span>
-          <input
-            type="text"
-            required
-            onChange={(e) => setFullName(e.target.value)}
-            value={fullName}
-            placeholder="John Doe"
-          />
-        </label>
+
         {isPending ? (
           <PrimaryButton disabled={true} type="submit">
             <LoadingSpinner />

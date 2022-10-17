@@ -9,18 +9,20 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { IoMdLogOut } from "react-icons/io";
 import { AiFillDownCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { useLogout } from "../../hooks/useLogout";
 
 const ProfileDropDown = () => {
   const [open, setOpen] = useState(false);
+  const { logoutUser } = useLogout();
 
   // global auth state
   const user = useSelector(selectUser);
-  const username = useSelector(selectUsername);
   const dispatch = useDispatch();
-
   const handleLogout = () => {
+    logoutUser();
     dispatch(logout());
   };
+  
   return (
     <div className={styles.container}>
       <div
@@ -43,7 +45,7 @@ const ProfileDropDown = () => {
         >
           <div className={styles.dropdown}>
             <Link
-              to={`/profile/${user?.displayName}`}
+              to={`/profile/${user?.uid}`}
               className={styles["dropdown-item"]}
             >
               <BsFillPersonFill /> <span>Profile</span>

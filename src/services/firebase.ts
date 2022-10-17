@@ -18,9 +18,9 @@ export async function checkUserWithUsername(username: string | undefined) {
   const querySnapshot = await getDocs(q);
   return querySnapshot.docs.length > 0;
 }
-// post to json
 
-//
+
+// convert post to json
 export function postToJSON(doc: DocumentSnapshot) {
   const data = doc.data();
   return {

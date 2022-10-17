@@ -32,7 +32,6 @@ function App() {
       unsub();
     });
   }, []);
-  // fetch user and posts
 
   return (
     <div className={styles.app}>
@@ -46,7 +45,8 @@ function App() {
             path="/create"
             element={!user ? <Login /> : <CreateDocument />}
           />
-          <Route path="/profile/:username" element={<Profiles />} />
+          <Route path="/profile/:id" element={<Profiles />} />
+          {/* <Route path="/profile/:id" element={<Profiles />} />  for postdetails*/}
         </Routes>
       </BrowserRouter>
     </div>

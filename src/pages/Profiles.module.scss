@@ -1,0 +1,33 @@
+.profile-grid {
+  display: grid;
+  grid-template-columns: 33% 1fr;
+  gap: 1.3rem;
+}
+.posts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+.profile {
+  background-color: var(--gray-bg);
+  border-radius: 0.5rem;
+  border: 1px solid var(--line-color);
+  height: 47.3rem;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  padding: 2rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.image {
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name {
+  font-size: 2.5rem;
+}

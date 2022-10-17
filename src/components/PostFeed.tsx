@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
 import styles from "./PostFeed.module.scss";
-import PostContainer from "./PostContainer";
+import PostItem from "./PostItem";
 import {
   collectionGroup,
+  DocumentData,
   getDocs,
-  onSnapshot,
   orderBy,
   query,
 } from "firebase/firestore";
 import { db } from "../lib/firebase";
 import { postToJSON } from "../services/firebase";
-
+import { Document } from "../ts/types/document";
 const PostFeed = () => {
-  const [documents, setDocuments] = useState<any[]>();
-
+  const [documents, setDocuments] = useState<DocumentData | undefined>();
+  // fetch data
   useEffect(() => {
     const fetchData = async () => {
       const postQuery = query(
@@ -27,12 +27,16 @@ const PostFeed = () => {
 
     fetchData();
   }, []);
-  console.log(documents);
+
   return (
     <div className={styles["posts-container"]}>
-      {documents?.map((document) => (
-        <PostContainer document={document} />
-      ))}
+      {documents?.map((document: Document) => {
+        return (
+          <div key={document.slug}>
+            <PostItem document={document} />
+          </div>
+        );
+      })}
     </div>
   );
 };
