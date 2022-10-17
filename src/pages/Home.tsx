@@ -2,7 +2,7 @@ import styles from "./Home.module.scss";
 import { AiFillHome } from "react-icons/ai";
 import { BsFileEarmarkCodeFill, BsFillPersonFill } from "react-icons/bs";
 // components
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingSpinner from "../components/utility/LoadingSpinner";
 import Button from "../components/Buttons/PrimaryButton";
 import PostFeed from "../components/PostFeed";
 import Footer from "../components/Footer";

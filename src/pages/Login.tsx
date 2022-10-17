@@ -1,9 +1,9 @@
 import { useState, FormEvent } from "react";
 import { Link } from "react-router-dom";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
-import Error from "../components/Error";
-import Form from "../components/Form";
-import LoadingSpinner from "../components/LoadingSpinner";
+import Error from "../components/utility/Error";
+import Form from "../components/utility/Form";
+import LoadingSpinner from "../components/utility/LoadingSpinner";
 import { useLogin } from "../hooks/useLogin";
 
 const Login = () => {

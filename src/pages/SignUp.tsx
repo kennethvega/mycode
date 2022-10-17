@@ -2,9 +2,9 @@ import defaultImage from "../../assets/blank profile.jpg";
 import { FormEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
-import Error from "../components/Error";
-import Form from "../components/Form";
-import LoadingSpinner from "../components/LoadingSpinner";
+import Error from "../components/utility/Error";
+import Form from "../components/utility/Form";
+import LoadingSpinner from "../components/utility/LoadingSpinner";
 import { useSignup } from "../hooks/useSignUp";
 
 const SignUp = () => {
@@ -20,7 +20,6 @@ const SignUp = () => {
     await signUp(email, password, userName);
   };
 
- 
   return (
     <div className="container margin-top-big">
       <Form onSubmit={handleSubmit}>

@@ -22,8 +22,8 @@ import { Document } from "../ts/types/document";
 // components
 import PostItem from "../components/PostItem";
 import Button from "../components/Buttons/PrimaryButton";
-import Modal from "../components/Modal";
-import Form from "../components/Form";
+import Modal from "../components/utility/Modal";
+import Form from "../components/utility/Form";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/authSlice";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";

@@ -2,7 +2,7 @@ import { useState } from "react";
 import TextEditor from "../components/TextEditor";
 import styles from "./CreateDocument.module.scss";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingSpinner from "../components/utility/LoadingSpinner";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/authSlice";
 import {
