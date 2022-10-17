@@ -20,6 +20,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { authIsReady, selectAuth, selectUser } from "./features/authSlice";
 import Profiles from "./pages/Profiles";
+import EditProfile from "./pages/EditProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -45,7 +46,9 @@ function App() {
             path="/create"
             element={!user ? <Login /> : <CreateDocument />}
           />
+          {/* dynamic routes */}
           <Route path="/profile/:id" element={<Profiles />} />
+          <Route path="/edit-profile/:id" element={<EditProfile />} />
           {/* <Route path="/profile/:id" element={<Profiles />} />  for postdetails*/}
         </Routes>
       </BrowserRouter>

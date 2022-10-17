@@ -1,0 +1,22 @@
+.update-heading {
+  font-size: 2.5rem;
+  text-align: center;
+}
+.picture {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  overflow: hidden;
+  cursor: pointer;
+}
+.image {
+  border-radius: 50%;
+  transition: all 0.3s;
+  object-fit: cover;
+  &:hover {
+    filter: invert(10%);
+  }
+}
+.image-input-file {
+  display: none;
+}
