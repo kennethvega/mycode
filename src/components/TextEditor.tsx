@@ -1,3 +1,6 @@
+import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
+import { lowlight } from "lowlight";
+// styling
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
@@ -144,9 +147,16 @@ type TextEditorProps = {
   bodyContent: string;
   setBodyContent: (html: string) => void;
 };
+
 const TextEditor = ({ setBodyContent, bodyContent }: TextEditorProps) => {
   const editor = useEditor({
-    extensions: [StarterKit, Underline],
+    extensions: [
+      StarterKit,
+      Underline,
+      CodeBlockLowlight.configure({
+        lowlight,
+      }),
+    ],
 
     content: `${bodyContent ? `${bodyContent}` : ""}
     

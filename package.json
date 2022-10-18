@@ -11,10 +11,12 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.6",
     "@tippyjs/react": "^4.2.6",
+    "@tiptap/extension-code-block-lowlight": "^2.0.0-beta.199",
     "@tiptap/extension-underline": "^2.0.0-beta.199",
     "@tiptap/react": "^2.0.0-beta.199",
     "@tiptap/starter-kit": "^2.0.0-beta.199",
     "firebase": "^9.11.0",
+    "lowlight": "^2.7.0",
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
