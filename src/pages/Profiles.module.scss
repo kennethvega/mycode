@@ -19,6 +19,9 @@
   padding: 2rem;
   align-items: center;
   justify-content: space-between;
+  & a {
+    width: 100%;
+  }
 }
 
 .image {

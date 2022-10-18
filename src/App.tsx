@@ -21,6 +21,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { authIsReady, selectAuth, selectUser } from "./features/authSlice";
 import Profiles from "./pages/Profiles";
 import EditProfile from "./pages/EditProfile";
+import SkeletonElement from "./components/skeletons/SkeletonElement";
+import SkeletonSidebar from "./components/skeletons/SkeletonSidebar";
 
 function App() {
   const dispatch = useDispatch();

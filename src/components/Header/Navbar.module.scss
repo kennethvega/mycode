@@ -33,7 +33,9 @@
 .navbar-right-content {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 2rem;
+  min-width: 20rem;
 
   .login {
     font-size: 1.5rem;

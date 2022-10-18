@@ -7,10 +7,13 @@ import styles from "./Navbar.module.scss";
 import Theme from "./Theme";
 // redux
 import { useSelector } from "react-redux";
-import { selectUser } from "../../features/authSlice";
+import { selectAuth, selectUser } from "../../features/authSlice";
 import ProfileDropDown from "./ProfileDropDown";
+import SkeletonElement from "../skeletons/SkeletonElement";
+import SkeletonNavbar from "../skeletons/SkeletonNavbar";
 
 const Navbar = () => {
+  const auth = useSelector(selectAuth);
   const user = useSelector(selectUser);
   const logo = "My< >";
 
@@ -21,30 +24,35 @@ const Navbar = () => {
           <Link to="/">
             <h1 className={styles.logo}>{logo}</h1>
           </Link>
-
           <div className={styles["navbar-right-content"]}>
-            {user ? (
+            {auth ? (
               <>
-                <Tippy content="Create account">
-                  <Link to="/create">
-                    <IoMdAdd className={styles.icon} />
-                  </Link>
-                </Tippy>
-                <Theme />
-                <ProfileDropDown />
+                {user ? (
+                  <>
+                    <Tippy content="Create account">
+                      <Link to="/create">
+                        <IoMdAdd className={styles.icon} />
+                      </Link>
+                    </Tippy>
+                    <Theme />
+                    <ProfileDropDown />
+                  </>
+                ) : (
+                  <>
+                    <Theme />
+                    <Link className={styles.login} to="/login">
+                      Login
+                    </Link>
+                    <Link to="/signup">
+                      <SecondaryButton disabled={false}>
+                        Create account
+                      </SecondaryButton>
+                    </Link>
+                  </>
+                )}
               </>
             ) : (
-              <>
-                <Theme />
-                <Link className={styles.login} to="/login">
-                  Login
-                </Link>
-                <Link to="/signup">
-                  <SecondaryButton disabled={false}>
-                    Create account
-                  </SecondaryButton>
-                </Link>
-              </>
+              <SkeletonNavbar />
             )}
           </div>
         </div>

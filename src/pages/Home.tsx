@@ -11,11 +11,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
 // redux
 import { useSelector } from "react-redux";
-import { selectUser } from "../features/authSlice";
+import { selectAuth, selectUser } from "../features/authSlice";
+import SkeletonSidebar from "../components/skeletons/SkeletonSidebar";
 
 const Home = () => {
   const { loginUser, error, isPending } = useLogin();
   const user = useSelector(selectUser);
+  const auth = useSelector(selectAuth);
   const demoEmail = import.meta.env.VITE_DEMO_EMAIL;
   const demoPassword = import.meta.env.VITE_DEMO_PASSWORD;
 
@@ -29,51 +31,60 @@ const Home = () => {
   return (
     <section className={styles[`home-container`]}>
       <div className={styles["side-bar"]}>
-        {user ? (
+        {/* if auth === false then return SkeletonSidebar */}
+        {auth ? (
           <>
-            <div className={styles["side-bar-links"]}>
-              <p>
-                <AiFillHome />
-                Home
-              </p>
-              <p>
-                <BsFileEarmarkCodeFill />
-                My documents
-              </p>
-              <p>
-                <BsFillPersonFill />
-                Profile
-              </p>
-            </div>
-            {/* add functionality later */}
+            {user && (
+              <>
+                <div className={styles["side-bar-links"]}>
+                  <p>
+                    <AiFillHome />
+                    Home
+                  </p>
+                  <p>
+                    <BsFileEarmarkCodeFill />
+                    My documents
+                  </p>
+                  <p>
+                    <BsFillPersonFill />
+                    Profile
+                  </p>
+                </div>
 
-            <Button disabled={false} onClick={() => navigate("/create")}>
-              Create a document
-            </Button>
+                <Button disabled={false} onClick={() => navigate("/create")}>
+                  Create a document
+                </Button>
+              </>
+            )}
+            {!user && (
+              <>
+                <p className={styles["welcome-message"]}>
+                  Welcome to <strong>Mycode👋</strong>This app is a
+                  documentation platform for developers. Login to create your
+                  own coding documentation and share it to the world.
+                </p>
+                {isPending ? (
+                  <Button disabled={true}>
+                    <LoadingSpinner />
+                  </Button>
+                ) : (
+                  <Button disabled={false} onClick={handleDemoLogin}>
+                    Demo account
+                  </Button>
+                )}
+                <Link to="/signup" className={styles.link}>
+                  <SecondaryButton disabled={false}>
+                    Create account
+                  </SecondaryButton>
+                </Link>
+                <Link to="/login" className={styles.login}>
+                  Login
+                </Link>
+              </>
+            )}
           </>
         ) : (
-          <>
-            <p className={styles["welcome-message"]}>
-              Welcome to <strong>Mycode👋</strong>This app is a documentation
-              platform for developers. Login to create your own coding
-              documentation and share it to the world.
-            </p>
-            {isPending ? (
-              <Button disabled={true}>
-                <LoadingSpinner />
-              </Button>
-            ) : (
-              <Button disabled={false} onClick={handleDemoLogin}>
-                Demo account
-              </Button>
-            )}
-            <Link to="/signup" className={styles.link}>
-              <SecondaryButton disabled={false}>Create account</SecondaryButton>
-            </Link>
-            <Link to="/login" className={styles.login}>
-              Login
-            </Link>
-          </>
+          <SkeletonSidebar />
         )}
 
         <Footer />

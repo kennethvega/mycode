@@ -7,13 +7,12 @@
   display: flex;
   gap: 1rem;
   border: 1px solid var(--line-color);
-  cursor: pointer;
 }
 .post-header {
   & h2 {
     padding: 0.3rem;
     border-radius: 0.5rem;
-
+    cursor: pointer;
     font-weight: 600;
     max-width: fit-content;
     transition: all 0.3s;
@@ -23,7 +22,7 @@
   }
 }
 .text-container {
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
