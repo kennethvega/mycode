@@ -6,6 +6,7 @@ import "./styles/Utility.scss";
 import "./styles/TextEditor.scss";
 import styles from "./App.module.scss";
 import "tippy.js/dist/tippy.css";
+import "react-loading-skeleton/dist/skeleton.css";
 // pages
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -21,8 +22,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { authIsReady, selectAuth, selectUser } from "./features/authSlice";
 import Profiles from "./pages/Profiles";
 import EditProfile from "./pages/EditProfile";
-import SkeletonElement from "./components/skeletons/SkeletonElement";
-import SkeletonSidebar from "./components/skeletons/SkeletonSidebar";
 
 function App() {
   const dispatch = useDispatch();

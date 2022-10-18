@@ -4,7 +4,7 @@ import { RiHeart2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { CgComment } from "react-icons/cg";
 import { Document } from "../ts/types/document";
-import SkeletonElement from "./skeletons/SkeletonElement";
+
 type PostItemProps = {
   document: Document;
 };

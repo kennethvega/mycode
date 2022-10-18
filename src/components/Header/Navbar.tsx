@@ -9,8 +9,6 @@ import Theme from "./Theme";
 import { useSelector } from "react-redux";
 import { selectAuth, selectUser } from "../../features/authSlice";
 import ProfileDropDown from "./ProfileDropDown";
-import SkeletonElement from "../skeletons/SkeletonElement";
-import SkeletonNavbar from "../skeletons/SkeletonNavbar";
 
 const Navbar = () => {
   const auth = useSelector(selectAuth);
@@ -25,7 +23,7 @@ const Navbar = () => {
             <h1 className={styles.logo}>{logo}</h1>
           </Link>
           <div className={styles["navbar-right-content"]}>
-            {auth ? (
+            {!auth ? (
               <>
                 {user ? (
                   <>
@@ -52,7 +50,7 @@ const Navbar = () => {
                 )}
               </>
             ) : (
-              <SkeletonNavbar />
+              <p>Loading...</p>
             )}
           </div>
         </div>
