@@ -13,8 +13,7 @@ import { useLogin } from "../hooks/useLogin";
 import { useSelector } from "react-redux";
 import { selectAuth, selectUser } from "../features/authSlice";
 // skeleton
-import Skeleton from "react-loading-skeleton";
-import ProfileSidebarSkeleton from "../components/skeletons/ProfileSidebarSkeleton";
+
 import HomeSidebarSkeleton from "../components/skeletons/HomeSidebarSkeleton";
 
 const Home = () => {

@@ -1,10 +1,17 @@
-import React from 'react'
-import BaseSkeleton from './BaseSkeleton'
+import React from "react";
+import BaseSkeleton from "./BaseSkeleton";
 
 const ProfileSidebarSkeleton = () => {
   return (
-    <div><BaseSkeleton type=''/></div>
-  )
-}
+    <div className="sidebar-container util-height">
+      <BaseSkeleton type="big-avatar" />
+      <BaseSkeleton type="text" />
+      <BaseSkeleton type="text-big" />
+      <div className="buttons">
+        <BaseSkeleton type="button" />
+      </div>
+    </div>
+  );
+};
 
-export default ProfileSidebarSkeleton
+export default ProfileSidebarSkeleton;

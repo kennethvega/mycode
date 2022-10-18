@@ -19,6 +19,8 @@ import PostItem from "../components/PostItem";
 import Button from "../components/Buttons/PrimaryButton";
 
 import Container from "../components/utility/Container";
+import PostItemSkeleton from "../components/skeletons/PostItemSkeleton";
+import ProfileSidebarSkeleton from "../components/skeletons/ProfileSidebarSkeleton";
 
 const Profiles = () => {
   const { id } = useParams();
@@ -50,29 +52,43 @@ const Profiles = () => {
   return (
     <Container>
       <div className={styles["profile-grid"]}>
-        <div className={styles.profile}>
-          <img
-            src={userDetails?.photoURL ? userDetails?.photoURL : defaultImage}
-            alt="profile-image"
-            className={styles.image}
-          />
+        {userDetails && (
+          <div className={styles.profile}>
+            <img
+              src={userDetails?.photoURL ? userDetails?.photoURL : defaultImage}
+              alt="profile-image"
+              className={styles.image}
+            />
 
-          <h1 className={styles.name}>{userDetails?.username}</h1>
+            <h1 className={styles.name}>{userDetails?.username}</h1>
 
-          <p className={styles.bio}>{`${
-            userDetails?.bio ? `Bio: ${userDetails?.bio}` : " "
-          }`}</p>
-          <p>Documents: {documents?.length}</p>
-          <Link to={`/edit-profile/${id}`}>
-            <Button type="button" disabled={false}>
-              Edit profile
-            </Button>
-          </Link>
-        </div>
+            <p className={styles.bio}>{`${
+              userDetails?.bio ? `Bio: ${userDetails?.bio}` : " "
+            }`}</p>
+            <p>Documents: {documents?.length}</p>
+            <Link to={`/edit-profile/${id}`}>
+              <Button type="button" disabled={false}>
+                Edit profile
+              </Button>
+            </Link>
+          </div>
+        )}
+        {!userDetails && <ProfileSidebarSkeleton />}
+
         <div className={styles["posts-container"]}>
-          {documents?.map((document: Document) => {
-            return <PostItem document={document} key={document.slug} />;
-          })}
+          {documents &&
+            documents?.map((document: Document) => {
+              return <PostItem document={document} key={document.slug} />;
+            })}
+          {!documents && (
+            <>
+              <PostItemSkeleton />
+              <PostItemSkeleton />
+              <PostItemSkeleton />
+              <PostItemSkeleton />
+              <PostItemSkeleton />
+            </>
+          )}
         </div>
       </div>
     </Container>

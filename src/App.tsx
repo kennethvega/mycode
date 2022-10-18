@@ -6,7 +6,7 @@ import "./styles/Utility.scss";
 import "./styles/TextEditor.scss";
 import styles from "./App.module.scss";
 import "tippy.js/dist/tippy.css";
-import "react-loading-skeleton/dist/skeleton.css";
+
 // pages
 import Login from "./pages/Login";
 import Home from "./pages/Home";

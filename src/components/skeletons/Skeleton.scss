@@ -34,11 +34,21 @@
 
   &.button {
     width: 100%;
-    height: 3rem;
+    height: 3.5rem;
   }
   &.box {
     width: 100%;
     height: 15rem;
+  }
+  &.text {
+    width: 100%;
+    height: 3rem;
+    margin: 0;
+  }
+  &.text-big {
+    height: 8rem;
+    width: 100%;
+    margin: 0;
   }
   //
   &.small-avatar {
@@ -46,9 +56,14 @@
     height: 3.5rem;
     border-radius: 50%;
   }
+  &.big-avatar {
+    width: 18rem;
+    height: 18rem;
+    border-radius: 50%;
+  }
   &.title {
     width: 100%;
-    height: 5rem;
+    height: 3rem;
     margin: 0.5rem 0;
   }
 
@@ -86,6 +101,9 @@
   padding: 2rem;
   width: 100%;
   max-height: 41rem;
+}
+.util-height {
+  max-height: 47.3rem !important;
 }
 .buttons {
   display: flex;
