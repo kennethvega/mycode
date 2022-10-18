@@ -11,6 +11,7 @@ import {
 import { db } from "../lib/firebase";
 import { postToJSON } from "../services/firebase";
 import { Document } from "../ts/types/document";
+import PostItemSkeleton from "./skeletons/PostItemSkeleton";
 
 const PostFeed = () => {
   const [documents, setDocuments] = useState<DocumentData | undefined>();
@@ -35,6 +36,15 @@ const PostFeed = () => {
         documents.map((document: Document) => {
           return <PostItem document={document} key={document.slug} />;
         })}
+      {!documents && (
+        <>
+          <PostItemSkeleton />
+          <PostItemSkeleton />
+          <PostItemSkeleton />
+          <PostItemSkeleton />
+          <PostItemSkeleton />
+        </>
+      )}
     </div>
   );
 };

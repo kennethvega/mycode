@@ -14,6 +14,8 @@ import { useSelector } from "react-redux";
 import { selectAuth, selectUser } from "../features/authSlice";
 // skeleton
 import Skeleton from "react-loading-skeleton";
+import ProfileSidebarSkeleton from "../components/skeletons/ProfileSidebarSkeleton";
+import HomeSidebarSkeleton from "../components/skeletons/HomeSidebarSkeleton";
 
 const Home = () => {
   const { loginUser, error, isPending } = useLogin();
@@ -33,51 +35,59 @@ const Home = () => {
     <section className={styles[`home-container`]}>
       <div className={styles["side-bar"]}>
         {/* if auth === false then return SkeletonSidebar */}
-        {user && (
+        {auth ? (
           <>
-            <div className={styles["side-bar-links"]}>
-              <p>
-                <AiFillHome />
-                Home
-              </p>
-              <p>
-                <BsFileEarmarkCodeFill />
-                My documents
-              </p>
-              <p>
-                <BsFillPersonFill />
-                Profile
-              </p>
-            </div>
+            {user && (
+              <>
+                <div className={styles["side-bar-links"]}>
+                  <p>
+                    <AiFillHome />
+                    Home
+                  </p>
+                  <p>
+                    <BsFileEarmarkCodeFill />
+                    My documents
+                  </p>
+                  <p>
+                    <BsFillPersonFill />
+                    Profile
+                  </p>
+                </div>
 
-            <Button disabled={false} onClick={() => navigate("/create")}>
-              Create a document
-            </Button>
-          </>
-        )}
-        {!user && (
-          <>
-            <p className={styles["welcome-message"]}>
-              Welcome to <strong>Mycode👋</strong>This app is a documentation
-              platform for developers. Login to create your own coding
-              documentation and share it to the world.
-            </p>
-            {isPending ? (
-              <Button disabled={true}>
-                <LoadingSpinner />
-              </Button>
-            ) : (
-              <Button disabled={false} onClick={handleDemoLogin}>
-                Demo account
-              </Button>
+                <Button disabled={false} onClick={() => navigate("/create")}>
+                  Create a document
+                </Button>
+              </>
             )}
-            <Link to="/signup" className={styles.link}>
-              <SecondaryButton disabled={false}>Create account</SecondaryButton>
-            </Link>
-            <Link to="/login" className={styles.login}>
-              Login
-            </Link>
+            {!user && (
+              <>
+                <p className={styles["welcome-message"]}>
+                  Welcome to <strong>Mycode👋</strong>This app is a
+                  documentation platform for developers. Login to create your
+                  own coding documentation and share it to the world.
+                </p>
+                {isPending ? (
+                  <Button disabled={true}>
+                    <LoadingSpinner />
+                  </Button>
+                ) : (
+                  <Button disabled={false} onClick={handleDemoLogin}>
+                    Demo account
+                  </Button>
+                )}
+                <Link to="/signup" className={styles.link}>
+                  <SecondaryButton disabled={false}>
+                    Create account
+                  </SecondaryButton>
+                </Link>
+                <Link to="/login" className={styles.login}>
+                  Login
+                </Link>
+              </>
+            )}
           </>
+        ) : (
+          <HomeSidebarSkeleton />
         )}
 
         <Footer />
