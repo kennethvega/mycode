@@ -16,12 +16,10 @@ export const useSignup = () => {
   const navigate = useNavigate();
 
   // global state action
-
   const dispatch = useDispatch();
   // hook state
   const [error, setError] = useState<null | string>(null);
   const [isPending, setIsPending] = useState(false);
-
   const signUp = async (
     email: string,
     password: string,

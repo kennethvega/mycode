@@ -43,10 +43,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={user ? <Home /> : <Login />} />
           <Route path="/signup" element={user ? <Home /> : <SignUp />} />
-          <Route
-            path="/create"
-            element={!user ? <Login /> : <CreateDocument />}
-          />
+          <Route path="/create" element={<CreateDocument />} />
           {/* dynamic routes */}
           <Route path="/profile/:id" element={<Profiles />} />
           <Route path="/edit-profile/:id" element={<EditProfile />} />

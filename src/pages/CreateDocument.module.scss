@@ -39,3 +39,23 @@
     background-color: var(--gray-bg) !important;
   }
 }
+.button-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5rem;
+  width: 50rem;
+  margin: 20rem auto;
+  margin-bottom: 50rem;
+  & h1 {
+    font-size: 3rem;
+    text-align: center;
+  }
+}

@@ -22,6 +22,9 @@
       background: var(--gray);
     }
   }
+  .blockquote {
+    display: none;
+  }
 }
 
 button.is-active {
@@ -39,26 +42,40 @@ button {
 
 .ProseMirror {
   min-height: 50rem;
+  max-height: 50rem;
+  border-top: 1px solid var(--line-color);
+  padding: 1.5rem;
+  overflow: scroll;
+  border-radius: 0.5rem;
+
   > * + * {
     margin-top: 0.5rem;
   }
   p {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 
   pre {
     background: #0d0d0d;
     color: #fff;
     font-family: "JetBrainsMono", monospace;
-
+    overflow: scroll;
+    white-space: pre !important;
+    border-radius: 0.5rem;
+    span {
+      margin: 0.5rem;
+      display: inline;
+    }
     code {
       background: none;
       color: inherit;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       padding: 0;
     }
-    span {
-      margin: 0.5rem;
+
+    .xml {
+      display: inline;
+      color: #fff;
     }
     .hljs-comment,
     .hljs-quote {
@@ -75,7 +92,9 @@ button {
     .hljs-name,
     .hljs-selector-id,
     .hljs-selector-class,
-    .hljs-attr {
+    .hljs-attr,
+    .hljs-selector-pseudo,
+    .hljs-property {
       color: #f98181;
     }
 
@@ -121,19 +140,24 @@ pre {
   background: #0d0d0d;
   color: #fff;
   font-family: "JetBrainsMono", monospace;
-
+  overflow: scroll;
   code {
     background: none;
     color: inherit;
-    font-size: 2rem;
+    font-size: 1.6rem;
     padding: 0;
   }
   span {
     margin: 0.5rem;
   }
+
   .hljs-comment,
   .hljs-quote {
     color: #616161;
+  }
+  .xml {
+    display: inline;
+    color: #fff;
   }
 
   .hljs-variable,
@@ -146,7 +170,9 @@ pre {
   .hljs-name,
   .hljs-selector-id,
   .hljs-selector-class,
-  .hljs-attr {
+  .hljs-attr,
+  .hljs-selector-pseudo,
+  .hljs-property {
     color: #f98181;
   }
 
@@ -184,6 +210,6 @@ pre {
     font-weight: 700;
   }
   span {
-    display: inline-block;
+    display: inline;
   }
 }

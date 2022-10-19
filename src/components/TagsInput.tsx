@@ -27,7 +27,6 @@ const TagsInput = ({ tags, setTags }: TagsInputProps) => {
               <span className={styles.close} onClick={() => removeTag(index)}>
                 &times;
               </span>
-              {console.log(tags)}
             </>
           </div>
         );
@@ -38,6 +37,7 @@ const TagsInput = ({ tags, setTags }: TagsInputProps) => {
           type="text"
           className={styles.input}
           placeholder="Add tags..."
+          maxLength={20}
         />
       ) : (
         <input
