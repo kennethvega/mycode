@@ -11,12 +11,11 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.6",
     "@tippyjs/react": "^4.2.6",
-    "@tiptap/extension-code-block-lowlight": "^2.0.0-beta.199",
     "@tiptap/extension-underline": "^2.0.0-beta.199",
     "@tiptap/react": "^2.0.0-beta.199",
     "@tiptap/starter-kit": "^2.0.0-beta.199",
+    "dompurify": "^2.4.0",
     "firebase": "^9.11.0",
-    "lowlight": "^2.7.0",
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -25,6 +24,7 @@
     "react-router-dom": "^6.4.2"
   },
   "devDependencies": {
+    "@types/dompurify": "^2.3.4",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.1.0",

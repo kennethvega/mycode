@@ -46,7 +46,7 @@ const PostItem = ({ document: post }: PostItemProps) => {
           <span className={styles.date}>{date}</span>
         </div>
         <div className={styles["post-body"]}>
-          <Link to={`/document/${post.slug}`}>
+          <Link to={`/document/${post.id}/${post.slug}`}>
             <h2 className={styles["post-title"]}>{post.title}</h2>
           </Link>
 

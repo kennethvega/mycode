@@ -1,20 +1,10 @@
 import React from "react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
-import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { EditorContent, useEditor } from "@tiptap/react";
-import css from "highlight.js/lib/languages/css";
-import js from "highlight.js/lib/languages/javascript";
-import ts from "highlight.js/lib/languages/typescript";
-import html from "highlight.js/lib/languages/xml";
-// load all highlight.js languages
-import { lowlight } from "lowlight";
 
-lowlight.registerLanguage("html", html);
-lowlight.registerLanguage("css", css);
-lowlight.registerLanguage("js", js);
-lowlight.registerLanguage("ts", ts);
-// icons
+// load all highlight.js languages`
+
 import {
   FaBold,
   FaItalic,
@@ -158,21 +148,9 @@ type TextEditorProps = {
   setBodyContent: (html: string) => void;
 };
 
-lowlight.registerLanguage("html", html);
-lowlight.registerLanguage("css", css);
-lowlight.registerLanguage("jsx", js);
-lowlight.registerLanguage("ts", ts);
-lowlight.registerLanguage("tsx", ts);
-
 const TextEditor = ({ setBodyContent, bodyContent }: TextEditorProps) => {
   const editor = useEditor({
-    extensions: [
-      StarterKit,
-      Underline,
-      CodeBlockLowlight.configure({
-        lowlight,
-      }),
-    ],
+    extensions: [StarterKit, Underline],
 
     content: `${bodyContent ? `${bodyContent}` : ""}
     

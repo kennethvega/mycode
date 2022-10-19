@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authIsReady, selectAuth, selectUser } from "./features/authSlice";
 import Profiles from "./pages/Profiles";
 import EditProfile from "./pages/EditProfile";
+import { Document } from "./pages/Document";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ function App() {
           {/* dynamic routes */}
           <Route path="/profile/:id" element={<Profiles />} />
           <Route path="/edit-profile/:id" element={<EditProfile />} />
-          {/* <Route path="/profile/:id" element={<Profiles />} />  for postdetails*/}
+          <Route path="/document/:id/:slug" element={<Document />} />
         </Routes>
       </BrowserRouter>
     </div>

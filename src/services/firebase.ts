@@ -25,7 +25,6 @@ export function postToJSON(doc: DocumentSnapshot) {
   return {
     ...data,
     createdAt: data?.createdAt.toMillis(),
-    updatedAt: data?.updatedAt.toMillis(),
   };
 }
 

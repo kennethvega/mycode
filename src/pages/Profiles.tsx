@@ -35,7 +35,7 @@ const Profiles = () => {
       const userSnap = await getDoc(userQuery);
       const user = userSnap.data();
       setUserDetails(user);
-      console.log(user);
+     
       // fetch user posts
       const q = query(
         collection(db, "users", `${id}`, "posts"),

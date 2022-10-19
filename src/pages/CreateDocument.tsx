@@ -40,7 +40,6 @@ const CreateDocument = () => {
       username: user?.displayName,
       slug: "",
       createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp(),
       id: user?.uid,
       photoURL: user?.photoURL ? user.photoURL : "",
     })
