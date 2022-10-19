@@ -21,12 +21,14 @@ import Button from "../components/Buttons/PrimaryButton";
 import Container from "../components/utility/Container";
 import PostItemSkeleton from "../components/skeletons/PostItemSkeleton";
 import ProfileSidebarSkeleton from "../components/skeletons/ProfileSidebarSkeleton";
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/authSlice";
 
 const Profiles = () => {
   const { id } = useParams();
   const [userDetails, setUserDetails] = useState<DocumentData | undefined>();
   const [documents, setDocuments] = useState<DocumentData | undefined>();
-
+  const userAuth = useSelector(selectUser);
   useEffect(() => {
     // get users posts only once when component mounts.
     const fetchData = async () => {
@@ -35,7 +37,7 @@ const Profiles = () => {
       const userSnap = await getDoc(userQuery);
       const user = userSnap.data();
       setUserDetails(user);
-     
+
       // fetch user posts
       const q = query(
         collection(db, "users", `${id}`, "posts"),

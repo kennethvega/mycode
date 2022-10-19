@@ -26,9 +26,11 @@ import { Document } from "./pages/Document";
 
 function App() {
   const dispatch = useDispatch();
-  const isAuthReady = useSelector(selectAuth);
+
   const user = useSelector(selectUser);
-  // check if authentication is ready
+  const authUser = useSelector(selectAuth);
+  console.log(authUser);
+  // check if authentication is ready --- needs to check in redux. learn redux more.
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
       dispatch(authIsReady(user));

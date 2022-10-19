@@ -102,7 +102,7 @@ const CreateDocument = () => {
           </SecondaryButton>
         </div>
       )}
-      {!auth && (
+      {/* {!auth && (
         <form className={styles.form}>
           <h2>Create a document</h2>
           <div className={styles["button-skeleton"]}>
@@ -112,7 +112,7 @@ const CreateDocument = () => {
           <BaseSkeleton type="big-box" />
           <BaseSkeleton type="button" />
         </form>
-      )}
+      )} */}
     </Container>
   );
 };
