@@ -21,8 +21,7 @@ import Button from "../components/Buttons/PrimaryButton";
 import Container from "../components/utility/Container";
 import PostItemSkeleton from "../components/skeletons/PostItemSkeleton";
 import ProfileSidebarSkeleton from "../components/skeletons/ProfileSidebarSkeleton";
-import { useSelector } from "react-redux";
-import { selectUser } from "../features/authSlice";
+
 import { useNameFormat } from "../hooks/useNameFormat";
 
 const Profiles = () => {

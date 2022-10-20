@@ -1,0 +1,19 @@
+.likes-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 1rem;
+
+  & span {
+    font-size: 1.5rem;
+  }
+}
+.like {
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    color: red;
+  }
+}

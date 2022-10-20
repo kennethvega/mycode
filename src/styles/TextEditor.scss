@@ -71,7 +71,6 @@ button {
     font-family: "Inter", sans-serif;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
-
     overflow: auto;
     white-space: pre !important;
     width: 100%;
@@ -112,7 +111,7 @@ pre {
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
   margin-top: 1rem;
-  overscroll-behavior-x: auto;
+
   overflow-x: auto;
   white-space: pre !important;
 

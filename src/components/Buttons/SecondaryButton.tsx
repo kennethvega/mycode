@@ -1,6 +1,6 @@
 import { ButtonProps } from "../../ts/interfaces/Buttons";
 
-const OutlineBtn = ({ children, onClick, disabled }: ButtonProps) => {
+const SecondaryButton = ({ children, onClick, disabled }: ButtonProps) => {
   return (
     <button
       type="button"
@@ -13,4 +13,4 @@ const OutlineBtn = ({ children, onClick, disabled }: ButtonProps) => {
   );
 };
 
-export default OutlineBtn;
+export default SecondaryButton;

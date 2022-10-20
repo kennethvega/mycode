@@ -1,7 +1,7 @@
 import styles from "./PostItem.module.scss";
 import defaultImage from "../assets/blank profile.jpg";
-import { RiHeart2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { RiHeart2Line } from "react-icons/ri";
 import { CgComment } from "react-icons/cg";
 import { Document } from "../ts/types/document";
 import { useNameFormat } from "../hooks/useNameFormat";
@@ -41,12 +41,12 @@ const PostItem = ({ document: post }: PostItemProps) => {
           </div>
         </div>
         <div className={styles["post-footer"]}>
-          <Link to={`/document/${post.slug}`}>
+          <Link to={`/document/${post.id}/${post.slug}`}>
             <span className={styles.icons}>
               <RiHeart2Line /> 18 reactions
             </span>
           </Link>
-          <Link to={`/document/${post.slug}`}>
+          <Link to={`/document/${post.id}/${post.slug}`}>
             <span className={styles.icons}>
               <CgComment /> 18 comments
             </span>

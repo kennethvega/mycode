@@ -1,7 +1,7 @@
 import { ButtonProps } from "../../ts/interfaces/Buttons";
 
 // custome button
-const Button = ({ children, onClick, disabled,type }: ButtonProps) => {
+const PrimaryButton = ({ children, onClick, disabled,type }: ButtonProps) => {
   return (
     <button
       type={type}
@@ -14,4 +14,4 @@ const Button = ({ children, onClick, disabled,type }: ButtonProps) => {
   );
 };
 
-export default Button;
+export default PrimaryButton;
