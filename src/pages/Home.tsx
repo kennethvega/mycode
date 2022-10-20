@@ -1,6 +1,10 @@
 import styles from "./Home.module.scss";
-import { AiFillHome } from "react-icons/ai";
-import { BsFileEarmarkCodeFill, BsFillPersonFill } from "react-icons/bs";
+import { AiFillHome, AiOutlineHome } from "react-icons/ai";
+import {
+  BsFileEarmarkCodeFill,
+  BsFillPersonFill,
+  BsFileEarmarkCode,
+} from "react-icons/bs";
 // components
 import LoadingSpinner from "../components/utility/LoadingSpinner";
 import Button from "../components/Buttons/PrimaryButton";
@@ -15,11 +19,13 @@ import { selectAuth, selectUser } from "../features/authSlice";
 // skeleton
 
 import HomeSidebarSkeleton from "../components/skeletons/HomeSidebarSkeleton";
+import { useState } from "react";
 
 const Home = () => {
   const { loginUser, isPending } = useLogin();
   const user = useSelector(selectUser);
   const auth = useSelector(selectAuth);
+  const [activeLink, setActiveLink] = useState<string>("home");
   // demo
   const demoEmail = import.meta.env.VITE_DEMO_EMAIL;
   const demoPassword = import.meta.env.VITE_DEMO_PASSWORD;
@@ -38,12 +44,26 @@ const Home = () => {
             {user && (
               <>
                 <div className={styles["side-bar-links"]}>
-                  <p>
-                    <AiFillHome />
+                  <p
+                    onClick={() => setActiveLink("home")}
+                    className={`${
+                      activeLink == "home" ? `${styles.active}` : " "
+                    }`}
+                  >
+                    {activeLink == "home" ? <AiFillHome /> : <AiOutlineHome />}
                     Home
                   </p>
-                  <p>
-                    <BsFileEarmarkCodeFill />
+                  <p
+                    onClick={() => setActiveLink("docs")}
+                    className={`${
+                      activeLink == "docs" ? `${styles.active}` : " "
+                    }`}
+                  >
+                    {activeLink == "docs" ? (
+                      <BsFileEarmarkCodeFill />
+                    ) : (
+                      <BsFileEarmarkCode />
+                    )}
                     My documents
                   </p>
                   <Link to={`/profile/${user.uid}`}>

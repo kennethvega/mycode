@@ -3,7 +3,7 @@
   margin: 8rem auto;
   padding: 0 2rem;
   display: grid;
-  grid-template-columns: 33% 1fr;
+  grid-template-columns: 30rem 1fr;
   gap: 1.3rem;
 }
 .side-bar {
@@ -17,6 +17,9 @@
   padding: 2rem;
   border: 1px solid var(--line-color);
   max-height: 41rem;
+}
+.active {
+  font-weight: 600;
 }
 .welcome-message {
   font-size: 1.7rem;
@@ -35,6 +38,9 @@
 
     padding: 1rem;
     border-radius: 0.5rem;
+    &:hover {
+      background-color: var(--background-color);
+    }
   }
 }
 .login {

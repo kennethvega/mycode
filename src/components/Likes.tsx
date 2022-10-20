@@ -63,7 +63,7 @@ const Likes = ({ id, likes, slug }: LikesProps) => {
           </Tippy>
         </Link>
       )}
-      <span>{likes?.length}</span>
+      <span>{likes ? likes.length : "0"}</span>
     </div>
   );
 };
