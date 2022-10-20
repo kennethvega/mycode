@@ -23,12 +23,15 @@ import PostItemSkeleton from "../components/skeletons/PostItemSkeleton";
 import ProfileSidebarSkeleton from "../components/skeletons/ProfileSidebarSkeleton";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/authSlice";
+import { useNameFormat } from "../hooks/useNameFormat";
 
 const Profiles = () => {
   const { id } = useParams();
   const [userDetails, setUserDetails] = useState<DocumentData | undefined>();
   const [documents, setDocuments] = useState<DocumentData | undefined>();
-  const userAuth = useSelector(selectUser);
+  // capitalizing the user username
+  const displayName = useNameFormat(userDetails?.username);
+
   useEffect(() => {
     // get users posts only once when component mounts.
     const fetchData = async () => {
@@ -37,7 +40,6 @@ const Profiles = () => {
       const userSnap = await getDoc(userQuery);
       const user = userSnap.data();
       setUserDetails(user);
-
       // fetch user posts
       const q = query(
         collection(db, "users", `${id}`, "posts"),
@@ -49,7 +51,7 @@ const Profiles = () => {
     };
 
     fetchData();
-  }, []);
+  }, [db]);
 
   return (
     <Container>
@@ -62,7 +64,7 @@ const Profiles = () => {
               className={styles.image}
             />
 
-            <h1 className={styles.name}>{userDetails?.username}</h1>
+            <h1 className={styles.name}>{displayName}</h1>
 
             <p className={styles.bio}>{`${
               userDetails?.bio ? `Bio: ${userDetails?.bio}` : " "

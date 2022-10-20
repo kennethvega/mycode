@@ -4,33 +4,17 @@ import { RiHeart2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { CgComment } from "react-icons/cg";
 import { Document } from "../ts/types/document";
-import { capitalizeUsername } from "../services/capitalizeUsername";
+import { useNameFormat } from "../hooks/useNameFormat";
+import useDateFormat from "../hooks/useDateFormat";
 type PostItemProps = {
   document: Document;
 };
 const PostItem = ({ document: post }: PostItemProps) => {
   // capitalizing the user username
-  const name = capitalizeUsername(post.username);
+  const name = useNameFormat(post?.username);
   // formating date
-  const d = new Date(post.createdAt);
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sept",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  let month = months[d.getMonth()];
-  const day = d.getDate();
-  const year = d.getFullYear();
-  const date = `${month} ${day} ${year}`;
+  const date = useDateFormat(post?.createdAt);
+
   return (
     <div className={styles["post-container"]}>
       <img

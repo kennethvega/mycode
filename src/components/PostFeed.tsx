@@ -28,7 +28,7 @@ const PostFeed = () => {
     };
 
     fetchData();
-  }, []);
+  }, [db]);
 
   return (
     <div className={styles["posts-container"]}>

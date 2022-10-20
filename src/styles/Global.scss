@@ -24,9 +24,6 @@
   --gray: #303030;
 }
 
-::-webkit-scrollbar {
-  width: 0;
-}
 *,
 *::after,
 *::before {
@@ -39,7 +36,8 @@ body {
   color: var(--text);
   background-color: var(--background-color);
   margin: 0 auto;
-  overflow-x: hidden;
+
+  overflow-x: auto;
 }
 html {
   font-size: 62.5%;
@@ -48,4 +46,9 @@ html {
 a {
   color: var(--text);
   text-decoration: none;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
 }

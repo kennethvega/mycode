@@ -17,17 +17,16 @@ import { selectAuth, selectUser } from "../features/authSlice";
 import HomeSidebarSkeleton from "../components/skeletons/HomeSidebarSkeleton";
 
 const Home = () => {
-  const { loginUser, error, isPending } = useLogin();
+  const { loginUser, isPending } = useLogin();
   const user = useSelector(selectUser);
   const auth = useSelector(selectAuth);
+  // demo
   const demoEmail = import.meta.env.VITE_DEMO_EMAIL;
   const demoPassword = import.meta.env.VITE_DEMO_PASSWORD;
-
   const handleDemoLogin = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     await loginUser(demoEmail, demoPassword);
   };
-
   const navigate = useNavigate();
 
   return (
@@ -47,10 +46,12 @@ const Home = () => {
                     <BsFileEarmarkCodeFill />
                     My documents
                   </p>
-                  <p>
-                    <BsFillPersonFill />
-                    Profile
-                  </p>
+                  <Link to={`/profile/${user.uid}`}>
+                    <p>
+                      <BsFillPersonFill />
+                      Profile
+                    </p>
+                  </Link>
                 </div>
 
                 <Button disabled={false} onClick={() => navigate("/create")}>
@@ -88,7 +89,6 @@ const Home = () => {
         ) : (
           <HomeSidebarSkeleton />
         )}
-
         <Footer />
       </div>
       <PostFeed />

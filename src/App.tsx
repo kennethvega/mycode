@@ -6,7 +6,6 @@ import "./styles/Utility.scss";
 import "./styles/TextEditor.scss";
 import styles from "./App.module.scss";
 import "tippy.js/dist/tippy.css";
-
 // pages
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -29,14 +28,14 @@ function App() {
 
   const user = useSelector(selectUser);
   const authUser = useSelector(selectAuth);
-  console.log(authUser);
-  // check if authentication is ready --- needs to check in redux. learn redux more.
+
+  // check if authentication is ready
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
       dispatch(authIsReady(user));
       unsub();
     });
-  }, []);
+  }, [auth]);
 
   return (
     <div className={styles.app}>

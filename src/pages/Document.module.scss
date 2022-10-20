@@ -1,0 +1,45 @@
+.document-container {
+  display: grid;
+  max-width: 100%;
+  grid-template-columns: 8% 1fr 20%;
+  gap: 1.5rem;
+  .left-col {
+    background-color: red;
+  }
+  .middle-col {
+    max-width: 100%;
+    height: auto;
+    background-color: var(--gray-bg);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    width: inherit;
+    white-space: nowrap;
+    overflow-x: auto;
+
+    .post-image-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1rem;
+    }
+    .author-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .post-title {
+      margin: 3rem 0;
+      font-size: 4rem;
+      font-weight: 800;
+    }
+    .image {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+  .right-col {
+    background-color: yellow;
+  }
+}
