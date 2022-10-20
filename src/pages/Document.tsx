@@ -35,7 +35,7 @@ export const Document = () => {
       <div className={styles["document-container"]}>
         <div className={styles["left-col"]}>
           <div className={styles["reactions-container"]}>
-            <Likes />
+            <Likes id={post?.id} likes={post?.likes} slug={post?.slug}/>
             <Tippy content="Jump to comments">
               <div className={styles["comment-container"]}>
                 <MdOutlineInsertComment className={styles.comment} />
@@ -71,6 +71,7 @@ export const Document = () => {
               </div>
             )}
           </div>
+          {/* main contents of page */}
           <h1 className={styles["post-title"]}>{post?.title}</h1>
           <div
             className="scrollbar"

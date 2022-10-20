@@ -17,3 +17,12 @@
     color: red;
   }
 }
+.unlike {
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: red;
+  &:hover {
+    color: rgb(136, 2, 2);
+  }
+}

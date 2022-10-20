@@ -39,6 +39,7 @@ const CreateDocument = () => {
       content: bodyContent,
       username: user?.displayName,
       slug: "",
+      likes: [""],
       createdAt: serverTimestamp(),
       id: user?.uid,
       photoURL: user?.photoURL ? user.photoURL : "",

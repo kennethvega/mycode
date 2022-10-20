@@ -3,6 +3,19 @@
   max-width: 100%;
   grid-template-columns: 5% 1fr;
   gap: 1.5rem;
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 2.3rem;
+  }
+  h3 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1.8rem;
+  }
   .left-col {
     background-color: var(--background-color);
     display: flex;
@@ -82,7 +95,7 @@
     font-size: 2.5rem;
     transition: all 0.3s;
     &:hover {
-      color: yellow;
+      color: green;
       cursor: pointer;
     }
   }
@@ -96,7 +109,7 @@
 .edit {
   transition: all 0.3s;
   &:hover {
-    color: green;
+    color: rgb(92, 92, 7);
     cursor: pointer;
   }
 }

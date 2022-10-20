@@ -41,11 +41,15 @@ button {
 }
 
 .ProseMirror {
-  min-height: 40rem;
-  max-height: 40rem;
+  min-height: 50rem;
+  max-height: 50rem;
   border-top: 1px solid var(--line-color);
   padding: 1.5rem;
-
+  overflow: scroll;
+  word-break: break-all;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   > * + * {
     margin-top: 0.75em;
   }
@@ -71,7 +75,7 @@ button {
     font-family: "Inter", sans-serif;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
-    overflow: auto;
+    overflow: hidden;
     white-space: pre !important;
     width: 100%;
 
@@ -93,9 +97,7 @@ button {
   display: none;
 }
 
-p {
-  font-size: 18px;
-}
+
 code {
   background-color: var(--gray-bg);
   color: var(--text);
