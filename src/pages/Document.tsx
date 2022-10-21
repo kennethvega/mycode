@@ -1,7 +1,7 @@
 import defaultImage from "../assets/blank profile.jpg";
-import { doc, DocumentData, onSnapshot } from "firebase/firestore";
+import { deleteDoc, doc, DocumentData, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Container from "../components/utility/Container";
 import { db } from "../lib/firebase";
 import { postToJSON } from "../services/firebase";
@@ -17,22 +17,38 @@ import { TbEdit } from "react-icons/tb";
 import Tippy from "@tippyjs/react";
 import EditDocument from "../components/EditDocument";
 import { useNameFormat } from "../hooks/useNameFormat";
+import Modal from "../components/utility/Modal";
+import PrimaryButton from "../components/Buttons/PrimaryButton";
+import SecondaryButton from "../components/Buttons/SecondaryButton";
+import LoadingSpinner from "../components/utility/LoadingSpinner";
 
 export const Document = () => {
   const user = useSelector(selectUser);
   const [post, setPost] = useState<DocumentData>();
   const [openEditForm, setOpenEditForm] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [loading, setLoading] = useState(false);
   const name = useNameFormat(post?.username);
   const date = useDateFormat(post?.createdAt);
   const { id, slug } = useParams();
+  const navigate = useNavigate();
+  //document reference
+  const docRef = doc(db, "users", `${id}`, "posts", `${slug}`);
   // fetch postdetail
   useEffect(() => {
-    const docRef = doc(db, "users", `${id}`, "posts", `${slug}`);
     onSnapshot(docRef, (snapshot) => {
       const data = postToJSON(snapshot);
       setPost(data);
     });
   }, []);
+
+  const handleDelete = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    await deleteDoc(docRef);
+    setLoading(false);
+    navigate("/");
+  };
 
   return (
     <Container>
@@ -71,7 +87,7 @@ export const Document = () => {
                     </div>
                   </Tippy>
                   <Tippy content="Delete this post">
-                    <div>
+                    <div onClick={() => setOpenModal(true)}>
                       <RiDeleteBin6Line className={styles.delete} />
                     </div>
                   </Tippy>
@@ -91,6 +107,30 @@ export const Document = () => {
       )}
       {openEditForm && (
         <EditDocument post={post} setOpenEditForm={setOpenEditForm} />
+      )}
+      {openModal && (
+        <Modal openModal={openModal} onClose={() => setOpenModal(false)}>
+          <h2 className={styles["modal-title"]}>
+            Are you sure you want to delete this post ?
+          </h2>
+          <div className={styles["modal-button-container"]}>
+            {!loading ? (
+              <PrimaryButton disabled={false} onClick={handleDelete}>
+                Delete
+              </PrimaryButton>
+            ) : (
+              <PrimaryButton disabled={true}>
+                <LoadingSpinner />
+              </PrimaryButton>
+            )}
+            <SecondaryButton
+              disabled={false}
+              onClick={() => setOpenModal(false)}
+            >
+              Cancel
+            </SecondaryButton>
+          </div>
+        </Modal>
       )}
     </Container>
   );

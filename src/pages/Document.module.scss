@@ -120,3 +120,15 @@
     cursor: pointer;
   }
 }
+.modal-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+.modal-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+}
