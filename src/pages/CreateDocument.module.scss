@@ -6,25 +6,25 @@
   background-color: var(--gray-bg);
   border-radius: 0.5rem;
   border: 1px solid var(--line-color);
-  & h2 {
+  h2 {
     font-size: 2.5rem;
     color: var(--light-text);
     margin-bottom: 2rem;
   }
 
-  & label {
+  label {
     display: block;
     margin: 2rem auto;
     font-size: 1.8rem;
     font-weight: 400;
     color: var(--text);
   }
-  & span {
+  span {
     display: block;
     margin: 1rem auto;
     color: var(--text);
   }
-  & input {
+  input {
     padding: 8px 6px;
     font-size: 1.8rem;
     color: var(--text);
@@ -33,7 +33,7 @@
     background-color: var(--gray-bg);
     border-radius: 0.5rem;
   }
-  & textarea {
+  textarea {
     color: var(--text);
     border: 1px solid var(--line-color);
     background-color: var(--gray-bg) !important;
@@ -57,5 +57,20 @@
   & h1 {
     font-size: 3rem;
     text-align: center;
+  }
+}
+.preview {
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  max-width: 19rem;
+  transition: all 0.3s;
+  border-radius: 0.5rem;
+  &:hover {
+    background-color: var(--gray);
   }
 }

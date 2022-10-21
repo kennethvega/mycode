@@ -1,6 +1,6 @@
 import Tippy from "@tippyjs/react";
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
-import React from "react";
+
 import { RiHeart2Line, RiHeart2Fill } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";

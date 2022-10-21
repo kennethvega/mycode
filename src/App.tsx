@@ -22,6 +22,7 @@ import { authIsReady, selectAuth, selectUser } from "./features/authSlice";
 import Profiles from "./pages/Profiles";
 import EditProfile from "./pages/EditProfile";
 import { Document } from "./pages/Document";
+import EditDocument from "./components/EditDocument";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ function App() {
           <Route path="/profile/:id" element={<Profiles />} />
           <Route path="/edit-profile/:id" element={<EditProfile />} />
           <Route path="/document/:id/:slug" element={<Document />} />
+          <Route path="/edit/:id/:slug" element={<EditDocument />} />
         </Routes>
       </BrowserRouter>
     </div>

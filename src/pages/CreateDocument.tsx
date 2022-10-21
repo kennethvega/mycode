@@ -103,17 +103,7 @@ const CreateDocument = () => {
           </SecondaryButton>
         </div>
       )}
-      {/* {!auth && (
-        <form className={styles.form}>
-          <h2>Create a document</h2>
-          <div className={styles["button-skeleton"]}>
-            <BaseSkeleton type="button" />
-            <BaseSkeleton type="button" />
-          </div>
-          <BaseSkeleton type="big-box" />
-          <BaseSkeleton type="button" />
-        </form>
-      )} */}
+    
     </Container>
   );
 };
