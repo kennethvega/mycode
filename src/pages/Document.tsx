@@ -16,11 +16,13 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { TbEdit } from "react-icons/tb";
 import Tippy from "@tippyjs/react";
 import EditDocument from "../components/EditDocument";
+import { useNameFormat } from "../hooks/useNameFormat";
 
 export const Document = () => {
   const user = useSelector(selectUser);
   const [post, setPost] = useState<DocumentData>();
   const [openEditForm, setOpenEditForm] = useState(false);
+  const name = useNameFormat(post?.username);
   const date = useDateFormat(post?.createdAt);
   const { id, slug } = useParams();
   // fetch postdetail
@@ -55,7 +57,9 @@ export const Document = () => {
                 className={styles.image}
               />
               <div className={styles["author-container"]}>
-                <p className={styles.name}>{post?.username}</p>
+                <Link to={`/profile/${post?.id}`}>
+                  <p className={styles.name}>{name}</p>
+                </Link>
                 <span>{date}</span>
               </div>
               {/* edit delete buttons */}

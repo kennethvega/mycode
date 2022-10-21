@@ -22,7 +22,7 @@ const ProfileDropDown = () => {
     logoutUser();
     dispatch(logout());
   };
-  
+
   return (
     <div className={styles.container}>
       <div
@@ -50,7 +50,6 @@ const ProfileDropDown = () => {
             >
               <BsFillPersonFill /> <span>Profile</span>
             </Link>
-
             <div className={styles["dropdown-item"]} onClick={handleLogout}>
               <IoMdLogOut /> <span>Logout</span>
             </div>

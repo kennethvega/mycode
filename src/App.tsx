@@ -1,5 +1,11 @@
 import { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+} from "react-router-dom";
 // style
 import "./styles/Global.scss";
 import "./styles/Utility.scss";
@@ -23,6 +29,7 @@ import Profiles from "./pages/Profiles";
 import EditProfile from "./components/EditProfile";
 import { Document } from "./pages/Document";
 import EditDocument from "./components/EditDocument";
+import RootLayout from "./pages/RootLayout";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,24 +45,22 @@ function App() {
     });
   }, [auth]);
 
-  return (
-    <div className={styles.app}>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={user ? <Home /> : <Login />} />
-          <Route path="/signup" element={user ? <Home /> : <SignUp />} />
-          <Route path="/create" element={<CreateDocument />} />
-          {/* dynamic routes */}
-          <Route path="/profile/:id" element={<Profiles />} />
-          <Route path="/edit-profile/:id" element={<EditProfile />} />
-          <Route path="/document/:id/:slug" element={<Document />} />
-          <Route path="/edit/:id/:slug" element={<EditDocument />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<RootLayout />}>
+        <Route index element={<Home />} />
+        <Route path="/login" element={user ? <Home /> : <Login />} />
+        <Route path="/signup" element={user ? <Home /> : <SignUp />} />
+        <Route path="/create" element={<CreateDocument />} />
+
+        <Route path="profile/:id" element={<Profiles />} />
+        <Route path="/document/:id/:slug" element={<Document />} />
+        <Route path="/edit/:id/:slug" element={<EditDocument />} />
+      </Route>
+    )
   );
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;
