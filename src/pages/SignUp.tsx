@@ -7,7 +7,7 @@ import Form from "../components/utility/Form";
 import LoadingSpinner from "../components/utility/LoadingSpinner";
 import { useSignup } from "../hooks/useSignUp";
 import Container from "../components/utility/Container";
-import styles from "./EditProfile.module.scss";
+import styles from "../components/EditProfile.module.scss";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/authSlice";
 const SignUp = () => {

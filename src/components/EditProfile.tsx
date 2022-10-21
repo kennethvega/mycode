@@ -13,24 +13,28 @@ import {
 } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React from "react";
-import Button from "../components/Buttons/PrimaryButton";
-import Container from "../components/utility/Container";
-import Form from "../components/utility/Form";
+import Button from "./Buttons/PrimaryButton";
+import Container from "./utility/Container";
+import Form from "./utility/Form";
 import { db, storage } from "../lib/firebase";
 import { checkUserWithUsername } from "../services/firebase";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/authSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./EditProfile.module.scss";
-import Error from "../components/utility/Error";
-import LoadingSpinner from "../components/utility/LoadingSpinner";
-const EditProfile = () => {
+import Error from "./utility/Error";
+import LoadingSpinner from "./utility/LoadingSpinner";
+
+const EditProfile = ({ userDetails, setOpenEditProfile }: DocumentData) => {
   const { id } = useParams();
   // edit state
-  const [userDetails, setUserDetails] = useState<DocumentData | undefined>();
-  const [username, setUsername] = useState<string | undefined>();
-  const [photoUrl, setPhotoUrl] = useState<string | undefined>();
-  const [bio, setBio] = useState<string | undefined>();
+  const [username, setUsername] = useState<string | undefined>(
+    userDetails?.username
+  );
+  // const [photoUrl, setPhotoUrl] = useState<string | undefined>(
+  //   userDetails?.photoURL
+  // );
+  const [bio, setBio] = useState<string | undefined>(userDetails?.bio);
   const [preview, setPreview] = useState<any>();
   const [profilePicture, setProfilePicture] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -39,21 +43,6 @@ const EditProfile = () => {
   const user = useSelector(selectUser);
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // get users posts only once when component mounts.
-    const fetchData = async () => {
-      // fetch user data
-      const userQuery = doc(db, "users", `${id}`);
-      const userSnap = await getDoc(userQuery);
-      const userData = userSnap.data();
-      setUserDetails(userData);
-      setUsername(userData?.username);
-      setBio(userData?.bio);
-      setPhotoUrl(userData?.photoURL);
-    };
-    fetchData();
-  }, []);
 
   // ------update profile logic-------
   // add image to preview in UI logic
@@ -68,6 +57,7 @@ const EditProfile = () => {
       setPreview(readerEvent.target?.result);
     };
   };
+
   // update function to call in handleSubmit
   const updateUserProfile = async () => {
     let imageURL: string | null;
@@ -82,12 +72,12 @@ const EditProfile = () => {
     // update both profile and users document
     await updateProfile(user!, {
       photoURL: imageURL,
-      displayName: username,
+      displayName: username?.trim(),
     });
     // update document firestore database
     await updateDoc(userRef, {
       photoURL: imageURL,
-      username: username,
+      username: username?.trim(),
       bio: bio,
     });
     // update user posts username and user photo
@@ -101,7 +91,7 @@ const EditProfile = () => {
     await Promise.all(
       userPosts.map((post) =>
         updateDoc(doc(db, "users", `${user?.uid}/posts/${post?.id}`), {
-          username: username,
+          username: username?.trim(),
           photoURL: user?.photoURL,
         })
       )
@@ -116,7 +106,7 @@ const EditProfile = () => {
       try {
         setLoading(true);
         await updateUserProfile();
-        navigate(`/profile/${id}`);
+        setOpenEditProfile(false);
       } catch (err) {
         console.log(err);
       }
@@ -126,7 +116,7 @@ const EditProfile = () => {
         try {
           setLoading(true);
           await updateUserProfile();
-          navigate(`/profile/${id}`);
+          setOpenEditProfile(false);
         } catch (err) {
           console.log(err);
         }

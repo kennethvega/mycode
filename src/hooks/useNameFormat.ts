@@ -7,11 +7,11 @@ export const useNameFormat = (username: string | undefined) => {
     if (name) {
       const displayName = name
         .map((dn: string) => {
-          return dn[0].toUpperCase() + dn.substring(1);
+          return dn[0]?.toUpperCase() + dn.substring(1);
         })
         .join(" ");
       setName(displayName);
     }
   }, [username]);
-  return name;
+  return name.trim();
 };

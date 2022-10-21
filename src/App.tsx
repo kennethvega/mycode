@@ -20,7 +20,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { authIsReady, selectAuth, selectUser } from "./features/authSlice";
 import Profiles from "./pages/Profiles";
-import EditProfile from "./pages/EditProfile";
+import EditProfile from "./components/EditProfile";
 import { Document } from "./pages/Document";
 import EditDocument from "./components/EditDocument";
 
