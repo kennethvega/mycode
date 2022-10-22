@@ -21,6 +21,7 @@ import Modal from "../components/utility/Modal";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
 import SecondaryButton from "../components/Buttons/SecondaryButton";
 import LoadingSpinner from "../components/utility/LoadingSpinner";
+import CommentsContainer from "../components/CommentsContainer";
 
 export const Document = () => {
   const user = useSelector(selectUser);
@@ -40,7 +41,7 @@ export const Document = () => {
       const data = postToJSON(snapshot);
       setPost(data);
     });
-  }, []);
+  }, [id]);
 
   const handleDelete = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -58,10 +59,10 @@ export const Document = () => {
             <div className={styles["reactions-container"]}>
               <Likes id={post?.id} likes={post?.likes} slug={post?.slug} />
               <Tippy content="Jump to comments">
-                <div className={styles["comment-container"]}>
+                <a href="#comments" className={styles["comment-container"]}>
                   <MdOutlineInsertComment className={styles.comment} />
                   <span>11</span>
-                </div>
+                </a>
               </Tippy>
             </div>
           </div>
@@ -102,6 +103,8 @@ export const Document = () => {
                 __html: DOMPurify.sanitize(post?.content),
               }}
             ></div>
+            {/* comments */}
+            <CommentsContainer id={id} slug={slug} />
           </div>
         </div>
       )}
