@@ -12,7 +12,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../lib/firebase";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import TagsInput from "../components/TagsInput";
 import Container from "../components/utility/Container";
 import BaseSkeleton from "../components/skeletons/BaseSkeleton";
@@ -22,11 +22,11 @@ const CreateDocument = () => {
   const [bodyContent, setBodyContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [tags, setTags] = useState<string[]>([]);
-  const navigate = useNavigate();
 
   const user = useSelector(selectUser);
   const auth = useSelector(selectAuth);
 
+  const navigate = useNavigate();
   //
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -39,7 +39,7 @@ const CreateDocument = () => {
       content: bodyContent,
       username: user?.displayName,
       slug: "",
-      likes: [""],
+      likes: [],
       createdAt: serverTimestamp(),
       id: user?.uid,
       photoURL: user?.photoURL ? user.photoURL : "",

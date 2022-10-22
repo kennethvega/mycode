@@ -1,34 +1,15 @@
-import { useState, useEffect } from "react";
+
 import styles from "./PostFeed.module.scss";
 import PostItem from "./PostItem";
 import {
-  collectionGroup,
+ 
   DocumentData,
-  getDocs,
-  orderBy,
-  query,
+ 
 } from "firebase/firestore";
-import { db } from "../lib/firebase";
-import { postToJSON } from "../services/firebase";
 import { Document } from "../ts/types/document";
 import PostItemSkeleton from "./skeletons/PostItemSkeleton";
 
-const PostFeed = () => {
-  const [documents, setDocuments] = useState<DocumentData | undefined>();
-  // fetch data
-  useEffect(() => {
-    const fetchData = async () => {
-      const postQuery = query(
-        collectionGroup(db, "posts"),
-        orderBy("createdAt", "desc")
-      );
-      const querySnapshot = await getDocs(postQuery);
-      const posts = querySnapshot.docs.map(postToJSON);
-      setDocuments(posts);
-    };
-
-    fetchData();
-  }, [db]);
+const PostFeed = ({ documents }: DocumentData) => {
 
   return (
     <div className={styles["posts-container"]}>

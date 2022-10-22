@@ -2,6 +2,7 @@ import defaultImage from "../assets/blank profile.jpg";
 import {
   arrayRemove,
   arrayUnion,
+  collection,
   collectionGroup,
   doc,
   DocumentData,
@@ -18,6 +19,7 @@ import Tippy from "@tippyjs/react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/authSlice";
 import { db } from "../lib/firebase";
+import { Link } from "react-router-dom";
 
 const Comment = ({ comment, slug, id }: DocumentData) => {
   const name = useNameFormat(comment?.username);
@@ -25,31 +27,36 @@ const Comment = ({ comment, slug, id }: DocumentData) => {
   // formating date
   const date = useDateFormat(comment?.createdAt);
 
-  const likesRef = doc(
-    db,
-    "users",
-    `${id}`,
-    "posts",
-    `${slug}`,
-    "comments",
-    `${comment.slug}`
-  );
+  // const likesRef = doc(
+  //   db,
+  //   `users/${id}/posts/${slug}/comments/${comment?.slug}`
+  // );
 
+  console.log(comment?.slug);
   const handleLike = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    if (user?.uid) {
-      if (comment.likes?.includes(user.uid)) {
-        updateDoc(likesRef, {
-          likes: arrayRemove(user.uid),
-        }).catch((e) => {
-          console.log(e);
-        });
-      } else {
-        updateDoc(likesRef, {
-          likes: arrayUnion(user.uid),
-        }).catch((e) => {
-          console.log(e);
-        });
+
+    if (comment.slug) {
+      if (user?.uid) {
+        if (comment.likes?.includes(user.uid)) {
+          updateDoc(
+            doc(db, `users/${id}/posts/${slug}/comments/${comment?.slug}`),
+            {
+              likes: arrayRemove(user.uid),
+            }
+          ).catch((e) => {
+            console.log(e);
+          });
+        } else {
+          updateDoc(
+            doc(db, `users/${id}/posts/${slug}/comments/${comment?.slug}`),
+            {
+              likes: arrayUnion(user.uid),
+            }
+          ).catch((e) => {
+            console.log(e);
+          });
+        }
       }
     }
   };
@@ -75,22 +82,32 @@ const Comment = ({ comment, slug, id }: DocumentData) => {
           </Tippy>
         </div>
         <div className={styles.message}>{comment.message}</div>
-        <div className={styles["likes-container"]}>
-          {comment.likes?.includes(user?.uid) ? (
-            <Tippy content="Unlike">
-              <div className={styles.likes} onClick={handleLike}>
-                <RiHeart2Fill className={styles.fill} />
-              </div>
-            </Tippy>
-          ) : (
-            <Tippy content="Like" placement="left">
-              <div className={styles.likes} onClick={handleLike}>
+        {user ? (
+          <div className={styles["likes-container"]}>
+            {comment.likes?.includes(user?.uid) ? (
+              <Tippy content="Unlike">
+                <div className={styles.likes} onClick={handleLike}>
+                  <RiHeart2Fill className={styles.fill} />
+                </div>
+              </Tippy>
+            ) : (
+              <Tippy content="Like" placement="left">
+                <div className={styles.likes} onClick={handleLike}>
+                  <RiHeart2Line />
+                </div>
+              </Tippy>
+            )}
+            <p>{}</p>
+          </div>
+        ) : (
+          <div className={styles["likes-container"]}>
+            <Tippy content="Login to like this comment" placement="left">
+              <Link to="/login" className={styles.likes}>
                 <RiHeart2Line />
-              </div>
+              </Link>
             </Tippy>
-          )}
-          <p>{comment.likes.length}</p>
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );

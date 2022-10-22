@@ -21,7 +21,8 @@ import { selectAuth, selectUser } from "../features/authSlice";
 import HomeSidebarSkeleton from "../components/skeletons/HomeSidebarSkeleton";
 import { useState } from "react";
 
-const Home = () => {
+const Home = ({ documents }: any) => {
+  const docs = documents;
   const { loginUser, isPending } = useLogin();
   const user = useSelector(selectUser);
   const auth = useSelector(selectAuth);
@@ -111,7 +112,7 @@ const Home = () => {
         )}
         <Footer />
       </div>
-      <PostFeed />
+      <PostFeed documents={docs} />
     </section>
   );
 };

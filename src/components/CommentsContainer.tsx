@@ -7,6 +7,7 @@ import {
   orderBy,
   query,
   serverTimestamp,
+  setDoc,
   Timestamp,
   updateDoc,
 } from "firebase/firestore";
@@ -49,28 +50,23 @@ const CommentsContainer = ({ id, slug }: CommentsContainerProps) => {
   console.log(comments?.length);
   // post reference
   const postRef = doc(db, "users", `${id}`, "posts", `${slug}`);
-  //  submit comment
-  const commentRef = collection(
-    db,
-    "users",
-    `${id}`,
-    "posts",
-    `${slug}`,
-    "comments"
-  );
 
+  console.log(id);
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     setLoading(true);
-    await addDoc(commentRef, {
-      username: user?.displayName,
-      message: commentInput,
-      likes: [],
-      photoURL: user?.photoURL,
-      slug: "",
-      id: user?.uid,
-      createdAt: serverTimestamp(),
-    })
+    await addDoc(
+      collection(db, "users", `${id}`, "posts", `${slug}`, "comments"),
+      {
+        username: user?.displayName,
+        message: commentInput,
+        likes: [],
+        photoURL: user?.photoURL,
+        slug: "",
+        id: user?.uid,
+        createdAt: serverTimestamp(),
+      }
+    )
       .then(async (docRef) => {
         // update document slug to equals document id
         await updateDoc(docRef, {
@@ -112,7 +108,9 @@ const CommentsContainer = ({ id, slug }: CommentsContainerProps) => {
 
       {comments &&
         comments.map((comment: DocumentData) => (
-          <Comment key={comment.slug} comment={comment} slug={slug} id={id} />
+          <div key={comment?.slug}>
+            <Comment comment={comment} slug={slug} id={id} />
+          </div>
         ))}
     </div>
   );

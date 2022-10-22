@@ -1,7 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
-  Routes,
-  Route,
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
@@ -18,9 +16,10 @@ import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import CreateDocument from "./pages/CreateDocument";
 //
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Navbar from "./components/Header/Navbar";
 // firebase
-import { auth } from "./lib/firebase";
+import { auth, db } from "./lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 // global state redux
 import { useDispatch, useSelector } from "react-redux";
@@ -30,12 +29,36 @@ import EditProfile from "./components/EditProfile";
 import { Document } from "./pages/Document";
 import EditDocument from "./components/EditDocument";
 import RootLayout from "./pages/RootLayout";
+import {
+  collectionGroup,
+  DocumentData,
+  getDocs,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
+import { postToJSON } from "./services/firebase";
+import PostFeed from "./components/PostFeed";
 
 function App() {
   const dispatch = useDispatch();
+  const [documents, setDocuments] = useState<DocumentData | undefined>();
 
   const user = useSelector(selectUser);
   const authUser = useSelector(selectAuth);
+
+  useEffect(() => {
+    const q = query(collectionGroup(db, "posts"), orderBy("createdAt", "desc"));
+    onSnapshot(q, (snapshot) => {
+      const postsData: DocumentData = [];
+      snapshot.forEach((doc) => {
+        postsData.push(postToJSON(doc));
+      });
+      setDocuments(postsData);
+    });
+  }, [db]);
+
+  console.log(documents);
 
   // check if authentication is ready
   useEffect(() => {
@@ -45,22 +68,24 @@ function App() {
     });
   }, [auth]);
 
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path="/" element={<RootLayout />}>
-        <Route index element={<Home />} />
-        <Route path="/login" element={user ? <Home /> : <Login />} />
-        <Route path="/signup" element={user ? <Home /> : <SignUp />} />
-        <Route path="/create" element={<CreateDocument />} />
-
-        <Route path="profile/:id" element={<Profiles />} />
-        <Route path="/document/:id/:slug" element={<Document />} />
-        <Route path="/edit/:id/:slug" element={<EditDocument />} />
-      </Route>
-    )
+  return (
+    <div className={styles.app}>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home documents={documents} />} />
+          <Route path="/login" element={user ? <Home /> : <Login />} />
+          <Route path="/signup" element={user ? <Home /> : <SignUp />} />
+          <Route path="/create" element={<CreateDocument />} />
+          {/* dynamic routes */}
+          <Route path="/profile/:id" element={<Profiles />} />
+          <Route path="/edit-profile/:id" element={<EditProfile />} />
+          <Route path="/document/:id/:slug" element={<Document />} />
+          <Route path="/edit/:id/:slug" element={<EditDocument />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
-
-  return <RouterProvider router={router} />;
 }
 
 export default App;

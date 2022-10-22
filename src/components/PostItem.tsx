@@ -44,7 +44,7 @@ const PostItem = ({ document: post }: PostItemProps) => {
           <Link to={`/document/${post.id}/${post.slug}`}>
             <span className={styles.icons}>
               <RiHeart2Line className={styles.icon} />
-              {post?.likes ? post.likes?.length : "0"} Reactions
+              {post?.likes.length === 0 ? "0" : post.likes?.length} Reactions
             </span>
           </Link>
           <Link to={`/document/${post.id}/${post.slug}`}>
