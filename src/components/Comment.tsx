@@ -1,5 +1,14 @@
 import defaultImage from "../assets/blank profile.jpg";
-import { DocumentData } from "firebase/firestore";
+import {
+  arrayRemove,
+  arrayUnion,
+  collectionGroup,
+  doc,
+  DocumentData,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import styles from "./Comment.module.scss";
 import useDateFormat from "../hooks/useDateFormat";
 import { useNameFormat } from "../hooks/useNameFormat";
@@ -8,12 +17,43 @@ import { RiDeleteBin6Line, RiHeart2Line, RiHeart2Fill } from "react-icons/ri";
 import Tippy from "@tippyjs/react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/authSlice";
+import { db } from "../lib/firebase";
 
-const Comment = ({ comment }: DocumentData) => {
+const Comment = ({ comment, slug, id }: DocumentData) => {
   const name = useNameFormat(comment?.username);
   const user = useSelector(selectUser);
   // formating date
   const date = useDateFormat(comment?.createdAt);
+
+  const likesRef = doc(
+    db,
+    "users",
+    `${id}`,
+    "posts",
+    `${slug}`,
+    "comments",
+    `${comment.slug}`
+  );
+
+  const handleLike = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    if (user?.uid) {
+      if (comment.likes?.includes(user.uid)) {
+        updateDoc(likesRef, {
+          likes: arrayRemove(user.uid),
+        }).catch((e) => {
+          console.log(e);
+        });
+      } else {
+        updateDoc(likesRef, {
+          likes: arrayUnion(user.uid),
+        }).catch((e) => {
+          console.log(e);
+        });
+      }
+    }
+  };
+
   return (
     <div className={styles["comment-container"]}>
       <div className={styles["image-container"]}>
@@ -38,13 +78,13 @@ const Comment = ({ comment }: DocumentData) => {
         <div className={styles["likes-container"]}>
           {comment.likes?.includes(user?.uid) ? (
             <Tippy content="Unlike">
-              <div className={styles.likes}>
+              <div className={styles.likes} onClick={handleLike}>
                 <RiHeart2Fill className={styles.fill} />
               </div>
             </Tippy>
           ) : (
-            <Tippy content="like" placement="left">
-              <div className={styles.likes}>
+            <Tippy content="Like" placement="left">
+              <div className={styles.likes} onClick={handleLike}>
                 <RiHeart2Line />
               </div>
             </Tippy>

@@ -112,7 +112,7 @@ const CommentsContainer = ({ id, slug }: CommentsContainerProps) => {
 
       {comments &&
         comments.map((comment: DocumentData) => (
-          <Comment key={comment.slug} comment={comment} />
+          <Comment key={comment.slug} comment={comment} slug={slug} id={id} />
         ))}
     </div>
   );
