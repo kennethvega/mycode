@@ -43,12 +43,14 @@ const PostItem = ({ document: post }: PostItemProps) => {
         <div className={styles["post-footer"]}>
           <Link to={`/document/${post.id}/${post.slug}`}>
             <span className={styles.icons}>
-              <RiHeart2Line className={styles.icon} /> 18 reactions
+              <RiHeart2Line className={styles.icon} />
+              {post?.likes ? post.likes?.length : "0"} Reactions
             </span>
           </Link>
           <Link to={`/document/${post.id}/${post.slug}`}>
             <span className={styles.icons}>
-              <CgComment className={styles.icon} /> 18 comments
+              <CgComment className={styles.icon} />{" "}
+              {post?.comments ? post.comments : "0"} comments
             </span>
           </Link>
         </div>

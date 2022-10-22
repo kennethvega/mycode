@@ -43,6 +43,7 @@ const CreateDocument = () => {
       createdAt: serverTimestamp(),
       id: user?.uid,
       photoURL: user?.photoURL ? user.photoURL : "",
+      comments: 0,
     })
       .then(async (docRef) => {
         await updateDoc(docRef, {
@@ -103,7 +104,6 @@ const CreateDocument = () => {
           </SecondaryButton>
         </div>
       )}
-    
     </Container>
   );
 };

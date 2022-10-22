@@ -50,7 +50,9 @@ export const Document = () => {
     setLoading(false);
     navigate("/");
   };
-
+  {
+    console.log(post?.comments);
+  }
   return (
     <Container>
       {!openEditForm && (
@@ -61,7 +63,7 @@ export const Document = () => {
               <Tippy content="Jump to comments">
                 <a href="#comments" className={styles["comment-container"]}>
                   <MdOutlineInsertComment className={styles.comment} />
-                  <span>11</span>
+                  <span>{post?.comments}</span>
                 </a>
               </Tippy>
             </div>

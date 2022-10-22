@@ -6,6 +6,8 @@ export type Document = {
   photoURL: string | null;
   slug: string;
   tags: string[];
+  likes: string[];
   title: string;
   username: string;
+  comments: number | null;
 };

@@ -1,6 +1,7 @@
 import {
   addDoc,
   collection,
+  doc,
   DocumentData,
   onSnapshot,
   orderBy,
@@ -45,8 +46,11 @@ const CommentsContainer = ({ id, slug }: CommentsContainerProps) => {
     });
   }, []);
 
+  console.log(comments?.length);
+  // post reference
+  const postRef = doc(db, "users", `${id}`, "posts", `${slug}`);
   //  submit comment
-  const fileRef = collection(
+  const commentRef = collection(
     db,
     "users",
     `${id}`,
@@ -54,10 +58,11 @@ const CommentsContainer = ({ id, slug }: CommentsContainerProps) => {
     `${slug}`,
     "comments"
   );
+
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     setLoading(true);
-    await addDoc(fileRef, {
+    await addDoc(commentRef, {
       username: user?.displayName,
       message: commentInput,
       likes: [],
@@ -70,6 +75,10 @@ const CommentsContainer = ({ id, slug }: CommentsContainerProps) => {
         // update document slug to equals document id
         await updateDoc(docRef, {
           slug: docRef.id,
+        });
+        // update comments value in the post
+        await updateDoc(postRef, {
+          comments: comments?.length + 1,
         });
       })
       .catch((error) => {
@@ -102,7 +111,9 @@ const CommentsContainer = ({ id, slug }: CommentsContainerProps) => {
       </div>
 
       {comments &&
-        comments.map((comment: DocumentData) => <Comment comment={comment} />)}
+        comments.map((comment: DocumentData) => (
+          <Comment key={comment.slug} comment={comment} />
+        ))}
     </div>
   );
 };

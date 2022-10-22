@@ -3,6 +3,7 @@
 import {
   collection,
   DocumentSnapshot,
+  FieldValue,
   getDocs,
   query,
   where,
@@ -19,6 +20,9 @@ export async function checkUserWithUsername(username: string | undefined) {
   return querySnapshot.docs.length > 0;
 }
 
+
+
+
 // convert post to json
 export function postToJSON(doc: DocumentSnapshot) {
   const data = doc.data();
@@ -33,3 +37,4 @@ export async function upload(file: any, userDetail: any) {
   const fileRef = ref(storage, userDetail.userId);
   const snapshot = await uploadBytes(fileRef, file);
 }
+
