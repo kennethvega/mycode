@@ -50,9 +50,7 @@ export const Document = () => {
     setLoading(false);
     navigate("/");
   };
-  {
-    console.log(post?.comments);
-  }
+
   return (
     <Container>
       {!openEditForm && (

@@ -27,12 +27,6 @@ const Comment = ({ comment, slug, id }: DocumentData) => {
   // formating date
   const date = useDateFormat(comment?.createdAt);
 
-  // const likesRef = doc(
-  //   db,
-  //   `users/${id}/posts/${slug}/comments/${comment?.slug}`
-  // );
-
-  console.log(comment?.slug);
   const handleLike = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
@@ -87,7 +81,7 @@ const Comment = ({ comment, slug, id }: DocumentData) => {
             {comment.likes?.includes(user?.uid) ? (
               <Tippy content="Unlike">
                 <div className={styles.likes} onClick={handleLike}>
-                  <RiHeart2Fill className={styles.fill} />
+                  <RiHeart2Fill className={styles.fill} />{" "}
                 </div>
               </Tippy>
             ) : (
@@ -97,7 +91,7 @@ const Comment = ({ comment, slug, id }: DocumentData) => {
                 </div>
               </Tippy>
             )}
-            <p>{}</p>
+            <p>{comment.likes.length}</p>
           </div>
         ) : (
           <div className={styles["likes-container"]}>
@@ -106,6 +100,7 @@ const Comment = ({ comment, slug, id }: DocumentData) => {
                 <RiHeart2Line />
               </Link>
             </Tippy>
+            <p>{comment.likes.length}</p>
           </div>
         )}
       </div>

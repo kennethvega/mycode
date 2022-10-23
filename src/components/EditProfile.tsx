@@ -31,9 +31,7 @@ const EditProfile = ({ userDetails, setOpenEditProfile }: DocumentData) => {
   const [username, setUsername] = useState<string | undefined>(
     userDetails?.username
   );
-  // const [photoUrl, setPhotoUrl] = useState<string | undefined>(
-  //   userDetails?.photoURL
-  // );
+ 
   const [bio, setBio] = useState<string | undefined>(userDetails?.bio);
   const [preview, setPreview] = useState<any>();
   const [profilePicture, setProfilePicture] = useState<File | null>(null);

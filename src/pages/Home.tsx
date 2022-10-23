@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import styles from "./Home.module.scss";
 import { AiFillHome, AiOutlineHome } from "react-icons/ai";
 import {
@@ -19,9 +20,9 @@ import { selectAuth, selectUser } from "../features/authSlice";
 // skeleton
 
 import HomeSidebarSkeleton from "../components/skeletons/HomeSidebarSkeleton";
-import { useState } from "react";
 
 const Home = ({ documents }: any) => {
+  const [loader, setLoader] = useState(true);
   const docs = documents;
   const { loginUser, isPending } = useLogin();
   const user = useSelector(selectUser);
@@ -35,6 +36,14 @@ const Home = ({ documents }: any) => {
     await loginUser(demoEmail, demoPassword);
   };
   const navigate = useNavigate();
+
+  // fake loading
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoader(false);
+    }, 600);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section className={styles[`home-container`]}>
@@ -112,7 +121,7 @@ const Home = ({ documents }: any) => {
         )}
         <Footer />
       </div>
-      <PostFeed documents={docs} />
+      <PostFeed documents={docs} loader={loader} />
     </section>
   );
 };

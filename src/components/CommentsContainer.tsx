@@ -47,11 +47,11 @@ const CommentsContainer = ({ id, slug }: CommentsContainerProps) => {
     });
   }, []);
 
-  console.log(comments?.length);
+ 
   // post reference
   const postRef = doc(db, "users", `${id}`, "posts", `${slug}`);
 
-  console.log(id);
+ 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     setLoading(true);

@@ -58,8 +58,6 @@ function App() {
     });
   }, [db]);
 
-  console.log(documents);
-
   // check if authentication is ready
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
