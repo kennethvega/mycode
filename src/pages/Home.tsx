@@ -26,7 +26,7 @@ const Home = ({ documents }: DocumentData) => {
   const { loginUser, isPending } = useLogin();
   const user = useSelector(selectUser);
   const auth = useSelector(selectAuth);
-  const [activeLink, setActiveLink] = useState<string>("home");
+  const [filterUserDocs, setFilterUserDocs] = useState<boolean>(false);
 
   // demo
   const demoEmail = import.meta.env.VITE_DEMO_EMAIL;
@@ -38,6 +38,14 @@ const Home = ({ documents }: DocumentData) => {
   const navigate = useNavigate();
 
   // filter users document only
+
+  const handleHome = () => {
+    setFilterUserDocs(false);
+  };
+  const handleMyDocuments = () => {
+    setFilterUserDocs(true);
+  };
+
   const userDocs: DocumentData = [];
   if (documents) {
     documents.forEach((item: DocumentData) => {
@@ -57,21 +65,17 @@ const Home = ({ documents }: DocumentData) => {
               <>
                 <div className={styles["side-bar-links"]}>
                   <p
-                    onClick={() => setActiveLink("home")}
-                    className={`${
-                      activeLink == "home" ? `${styles.active}` : " "
-                    }`}
+                    onClick={handleHome}
+                    className={`${!filterUserDocs ? `${styles.active}` : " "}`}
                   >
-                    {activeLink == "home" ? <AiFillHome /> : <AiOutlineHome />}
+                    {!filterUserDocs ? <AiFillHome /> : <AiOutlineHome />}
                     Home
                   </p>
                   <p
-                    onClick={() => setActiveLink("docs")}
-                    className={`${
-                      activeLink == "docs" ? `${styles.active}` : " "
-                    }`}
+                    onClick={handleMyDocuments}
+                    className={`${filterUserDocs ? `${styles.active}` : " "}`}
                   >
-                    {activeLink == "docs" ? (
+                    {filterUserDocs ? (
                       <BsFileEarmarkCodeFill />
                     ) : (
                       <BsFileEarmarkCode />
@@ -123,7 +127,9 @@ const Home = ({ documents }: DocumentData) => {
         )}
         <Footer />
       </div>
-      <PostFeed documents={activeLink == "home" ? documents : userDocs} />
+
+      {filterUserDocs && <PostFeed documents={userDocs} />}
+      {!filterUserDocs && <PostFeed documents={documents} />}
     </section>
   );
 };

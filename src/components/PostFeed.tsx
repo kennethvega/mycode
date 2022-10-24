@@ -34,10 +34,18 @@ const PostFeed = ({ documents }: DocumentData) => {
         placeholder="Search a doc"
         onKeyUp={(e) => search((e.target as HTMLInputElement).value)}
       />
-      {documents &&
+
+      {filteredDocs?.length
+        ? filteredDocs?.map((document: Document) => {
+            return <PostItem document={document} key={document.slug} />;
+          })
+        : documents?.map((document: Document) => {
+            return <PostItem document={document} key={document.slug} />;
+          })}
+      {/* {documents &&
         filteredDocs.map((document: Document) => {
           return <PostItem document={document} key={document.slug} />;
-        })}
+        })} */}
       {!documents && (
         <>
           <PostItemSkeleton />
