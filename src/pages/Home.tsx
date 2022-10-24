@@ -20,14 +20,14 @@ import { selectAuth, selectUser } from "../features/authSlice";
 // skeleton
 
 import HomeSidebarSkeleton from "../components/skeletons/HomeSidebarSkeleton";
+import { DocumentData } from "firebase/firestore";
 
-const Home = ({ documents }: any) => {
-  const [loader, setLoader] = useState(true);
-  const docs = documents;
+const Home = ({ documents }: DocumentData) => {
   const { loginUser, isPending } = useLogin();
   const user = useSelector(selectUser);
   const auth = useSelector(selectAuth);
   const [activeLink, setActiveLink] = useState<string>("home");
+
   // demo
   const demoEmail = import.meta.env.VITE_DEMO_EMAIL;
   const demoPassword = import.meta.env.VITE_DEMO_PASSWORD;
@@ -37,14 +37,16 @@ const Home = ({ documents }: any) => {
   };
   const navigate = useNavigate();
 
-  // fake loading
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoader(false);
-    }, 600);
-    return () => clearTimeout(timer);
-  }, []);
-
+  // filter users document only
+  const userDocs: DocumentData = [];
+  if (documents) {
+    documents.forEach((item: DocumentData) => {
+      if (item.id === user?.uid) {
+        userDocs.push(item);
+      }
+    });
+  }
+  console.log(userDocs);
   return (
     <section className={styles[`home-container`]}>
       <div className={styles["side-bar"]}>
@@ -121,7 +123,7 @@ const Home = ({ documents }: any) => {
         )}
         <Footer />
       </div>
-      <PostFeed documents={docs} loader={loader} />
+      <PostFeed documents={activeLink == "home" ? documents : userDocs} />
     </section>
   );
 };

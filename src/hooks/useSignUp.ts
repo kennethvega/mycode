@@ -36,7 +36,7 @@ export const useSignup = () => {
         await createUserWithEmailAndPassword(auth, email, password).then(
           async ({ user }) => {
             // upload image to storage
-            let imageURL: string | null;
+            let imageURL: string | null | undefined;
             const userRef = doc(db, "users", `${user?.uid}`);
             const fileRef = ref(storage, `${user?.uid}`);
 
@@ -44,7 +44,7 @@ export const useSignup = () => {
               await uploadBytes(fileRef, profilePicture);
               imageURL = await getDownloadURL(fileRef);
             } else {
-              imageURL = " ";
+              imageURL = "";
             }
             // update both profile
             await updateProfile(user, {

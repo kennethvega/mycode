@@ -32,7 +32,7 @@ const ProfileDropDown = () => {
         <AiFillDownCircle className={styles["down-circle-svg"]} />
 
         <img
-          src={user?.photoURL ? user.photoURL : defaultImage}
+          src={user?.photoURL ? user?.photoURL : defaultImage}
           alt="profile avatar"
           className={styles.profile}
         />

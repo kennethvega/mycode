@@ -36,6 +36,7 @@ import {
   onSnapshot,
   orderBy,
   query,
+  where,
 } from "firebase/firestore";
 import { postToJSON } from "./services/firebase";
 import PostFeed from "./components/PostFeed";
@@ -43,10 +44,12 @@ import PostFeed from "./components/PostFeed";
 function App() {
   const dispatch = useDispatch();
   const [documents, setDocuments] = useState<DocumentData | undefined>();
-
+  const [userDocuments, setUserDocuments] = useState<
+    DocumentData | undefined
+  >();
   const user = useSelector(selectUser);
   const authUser = useSelector(selectAuth);
-
+  // fethc data
   useEffect(() => {
     const q = query(collectionGroup(db, "posts"), orderBy("createdAt", "desc"));
     onSnapshot(q, (snapshot) => {
@@ -56,6 +59,8 @@ function App() {
       });
       setDocuments(postsData);
     });
+
+    // fetch only the users documents
   }, [db]);
 
   // check if authentication is ready
@@ -71,7 +76,12 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home documents={documents} />} />
+          <Route
+            path="/"
+            element={
+              <Home documents={documents}  />
+            }
+          />
           <Route path="/login" element={user ? <Home /> : <Login />} />
           <Route path="/signup" element={user ? <Home /> : <SignUp />} />
           <Route path="/create" element={<CreateDocument />} />
