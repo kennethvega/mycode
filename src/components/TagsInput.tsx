@@ -37,7 +37,7 @@ const TagsInput = ({ tags, setTags }: TagsInputProps) => {
           type="text"
           className={styles.input}
           placeholder="Add tags..."
-          maxLength={20}
+          maxLength={10}
         />
       ) : (
         <input

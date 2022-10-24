@@ -7,13 +7,19 @@
   gap: 1.3rem;
 }
 .side-bar {
+  width: 100%;
+}
+.inner-container {
+  position: fixed;
   background-color: var(--gray-bg);
   border-radius: 0.5rem;
+  // ------------
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-around;
   gap: 2rem;
+  width: 30rem;
   padding: 2rem;
   border: 1px solid var(--line-color);
   height: 41rem;

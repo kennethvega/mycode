@@ -58,74 +58,103 @@ const Home = ({ documents }: DocumentData) => {
   return (
     <section className={styles[`home-container`]}>
       <div className={styles["side-bar"]}>
-        {/* if auth === false then return SkeletonSidebar */}
-        {auth ? (
-          <>
-            {user && (
-              <>
-                <div className={styles["side-bar-links"]}>
-                  <p
-                    onClick={handleHome}
-                    className={`${!filterUserDocs ? `${styles.active}` : " "}`}
-                  >
-                    {!filterUserDocs ? <AiFillHome /> : <AiOutlineHome />}
-                    Home
-                  </p>
-                  <p
-                    onClick={handleMyDocuments}
-                    className={`${filterUserDocs ? `${styles.active}` : " "}`}
-                  >
-                    {filterUserDocs ? (
-                      <BsFileEarmarkCodeFill />
-                    ) : (
-                      <BsFileEarmarkCode />
-                    )}
-                    My documents
-                  </p>
-                  <Link to={`/profile/${user.uid}`}>
-                    <p>
-                      <BsFillPersonFill />
-                      Profile
+        <div className={styles["inner-container"]}>
+          {/* if auth === false then return SkeletonSidebar */}
+          {auth ? (
+            <>
+              {user && (
+                <>
+                  <div className={styles["side-bar-links"]}>
+                    <p
+                      onClick={handleHome}
+                      className={`${
+                        !filterUserDocs ? `${styles.active}` : " "
+                      }`}
+                    >
+                      {!filterUserDocs ? <AiFillHome /> : <AiOutlineHome />}
+                      Home
                     </p>
-                  </Link>
-                </div>
+                    <p
+                      onClick={handleMyDocuments}
+                      className={`${filterUserDocs ? `${styles.active}` : " "}`}
+                    >
+                      {filterUserDocs ? (
+                        <BsFileEarmarkCodeFill />
+                      ) : (
+                        <BsFileEarmarkCode />
+                      )}
+                      My documents
+                    </p>
+                    <Link to={`/profile/${user.uid}`}>
+                      <p>
+                        <BsFillPersonFill />
+                        Profile
+                      </p>
+                    </Link>
+                  </div>
 
-                <Button disabled={false} onClick={() => navigate("/create")}>
-                  Create a document
-                </Button>
-              </>
-            )}
-            {!user && (
-              <>
-                <p className={styles["welcome-message"]}>
-                  Welcome to <strong>Mycode👋</strong>This app is a
-                  documentation platform for developers. Login to create your
-                  own coding documentation and share it to the world.
-                </p>
-                {isPending ? (
-                  <Button disabled={true}>
-                    <LoadingSpinner />
+                  <Button disabled={false} onClick={() => navigate("/create")}>
+                    Create a document
                   </Button>
-                ) : (
-                  <Button disabled={false} onClick={handleDemoLogin}>
-                    Demo account
-                  </Button>
-                )}
-                <Link to="/signup" className={styles.link}>
-                  <SecondaryButton disabled={false}>
-                    Create account
-                  </SecondaryButton>
-                </Link>
-                <Link to="/login" className={styles.login}>
-                  Login
-                </Link>
-              </>
-            )}
-          </>
-        ) : (
-          <HomeSidebarSkeleton />
-        )}
-        <Footer />
+                </>
+              )}
+              {!user && (
+                <>
+                  <p className={styles["welcome-message"]}>
+                    Welcome to <strong>Mycode👋</strong>This app is a
+                    documentation platform for developers. Login to create your
+                    own coding documentation and share it to the world.
+                  </p>
+                  {isPending ? (
+                    <Button disabled={true}>
+                      <LoadingSpinner />
+                    </Button>
+                  ) : (
+                    <Button disabled={false} onClick={handleDemoLogin}>
+                      Demo account
+                    </Button>
+                  )}
+                  <Link to="/signup" className={styles.link}>
+                    <SecondaryButton disabled={false}>
+                      Create account
+                    </SecondaryButton>
+                  </Link>
+                  <Link to="/login" className={styles.login}>
+                    Login
+                  </Link>
+                </>
+              )}
+            </>
+          ) : (
+            <HomeSidebarSkeleton />
+          )}
+          <Footer />
+        </div>
+        {/* <div className={styles["mobile-nav"]}>
+          <div className={styles["side-bar-links"]}>
+            <p
+              onClick={handleHome}
+              className={`${!filterUserDocs ? `${styles.active}` : " "}`}
+            >
+              {!filterUserDocs ? <AiFillHome /> : <AiOutlineHome />}
+            </p>
+            <p
+              onClick={handleMyDocuments}
+              className={`${filterUserDocs ? `${styles.active}` : " "}`}
+            >
+              {filterUserDocs ? (
+                <BsFileEarmarkCodeFill />
+              ) : (
+                <BsFileEarmarkCode />
+              )}
+            </p>
+            <Link to={`/profile/${user?.uid}`}>
+              <p>
+                <BsFillPersonFill />
+              </p>
+            </Link>
+          </div>
+        </div> */}
       </div>
 
       {filterUserDocs && <PostFeed documents={userDocs} />}
