@@ -75,7 +75,7 @@ const Profiles = () => {
               <p className={styles.bio}>{`${
                 userDetails?.bio ? `Bio: ${userDetails?.bio}` : " "
               }`}</p>
-              <p>Documents: {documents?.length}</p>
+              <p className={styles.documents}>Documents: {documents?.length}</p>
 
               {user?.uid == userDetails?.id && (
                 <Button

@@ -96,25 +96,22 @@ const EditProfile = ({ userDetails, setOpenEditProfile }: DocumentData) => {
     );
     const userComments = postsComments.docs.map((doc) => ({
       ...doc.data(),
+      reference: doc.ref,
     }));
+    console.log(userComments);
+
     await Promise.all(
       userComments.map((comment) =>
-        updateDoc(
-          doc(
-            db,
-            "users",
-            `${user?.uid}/posts/${comment?.postId}/comments/${comment?.slug}`
-          ),
-          {
-            username: username?.trim(),
-            photoURL: user?.photoURL,
-          }
-        )
+        updateDoc(comment.reference, {
+          username: username?.trim(),
+          photoURL: user?.photoURL,
+        })
       )
     );
 
     setLoading(false);
     setError("");
+    setOpenEditProfile(false);
   };
   // submit edit
   const handleSubmit = async (e: any) => {
