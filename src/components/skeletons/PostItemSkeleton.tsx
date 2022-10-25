@@ -1,4 +1,3 @@
-import React from "react";
 import BaseSkeleton from "./BaseSkeleton";
 
 const PostItemSkeleton = () => {

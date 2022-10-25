@@ -7,8 +7,6 @@ import {
   orderBy,
   query,
   serverTimestamp,
-  setDoc,
-  Timestamp,
   updateDoc,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";

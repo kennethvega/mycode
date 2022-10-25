@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./ProfileDropDown.module.scss";
 import defaultImage from "../../assets/blank profile.jpg";
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { logout, selectUser, selectUsername } from "../../features/authSlice";
+import { logout, selectUser } from "../../features/authSlice";
 // icons
 import { BsFillPersonFill } from "react-icons/bs";
 import { IoMdLogOut } from "react-icons/io";

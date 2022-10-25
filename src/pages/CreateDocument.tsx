@@ -4,7 +4,7 @@ import styles from "./CreateDocument.module.scss";
 import PrimaryButton from "../components/Buttons/PrimaryButton";
 import LoadingSpinner from "../components/utility/LoadingSpinner";
 import { useSelector } from "react-redux";
-import { selectAuth, selectUser } from "../features/authSlice";
+import { selectUser } from "../features/authSlice";
 import {
   addDoc,
   collection,
@@ -12,10 +12,10 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../lib/firebase";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import TagsInput from "../components/TagsInput";
 import Container from "../components/utility/Container";
-import BaseSkeleton from "../components/skeletons/BaseSkeleton";
+
 import SecondaryButton from "../components/Buttons/SecondaryButton";
 const CreateDocument = () => {
   const [title, setTitle] = useState("");
@@ -24,7 +24,6 @@ const CreateDocument = () => {
   const [tags, setTags] = useState<string[]>([]);
 
   const user = useSelector(selectUser);
-  const auth = useSelector(selectAuth);
 
   const navigate = useNavigate();
   //

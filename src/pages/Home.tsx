@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./Home.module.scss";
 import { AiFillHome, AiOutlineHome } from "react-icons/ai";
 import {

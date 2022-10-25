@@ -5,14 +5,11 @@ import {
   collection,
   doc,
   DocumentData,
-  getDoc,
-  getDocs,
   onSnapshot,
   orderBy,
   query,
-  setDoc,
 } from "firebase/firestore";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { db } from "../lib/firebase";
 import { postToJSON } from "../services/firebase";
 import { Document } from "../ts/types/document";

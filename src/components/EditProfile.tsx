@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import defaultImage from "../assets/blank profile.jpg";
 import { updateProfile } from "firebase/auth";
 import {
@@ -20,7 +20,6 @@ import { db, storage } from "../lib/firebase";
 import { checkUserWithUsername } from "../services/firebase";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/authSlice";
-import { useNavigate, useParams } from "react-router-dom";
 import styles from "./EditProfile.module.scss";
 import Error from "./utility/Error";
 import LoadingSpinner from "./utility/LoadingSpinner";
@@ -38,8 +37,6 @@ const EditProfile = ({ userDetails, setOpenEditProfile }: DocumentData) => {
   const [error, setError] = useState<any>();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const user = useSelector(selectUser);
-
-  const navigate = useNavigate();
 
   // ------update profile logic-------
   // add image to preview in UI logic

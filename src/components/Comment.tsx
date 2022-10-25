@@ -2,13 +2,9 @@ import defaultImage from "../assets/blank profile.jpg";
 import {
   arrayRemove,
   arrayUnion,
-  collection,
-  collectionGroup,
   doc,
   DocumentData,
-  query,
   updateDoc,
-  where,
 } from "firebase/firestore";
 import styles from "./Comment.module.scss";
 import useDateFormat from "../hooks/useDateFormat";

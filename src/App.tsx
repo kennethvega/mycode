@@ -12,7 +12,7 @@ import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import CreateDocument from "./pages/CreateDocument";
 //
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Header/Navbar";
 // firebase
 import { auth, db } from "./lib/firebase";
@@ -24,27 +24,22 @@ import Profiles from "./pages/Profiles";
 import EditProfile from "./components/EditProfile";
 import { Document } from "./pages/Document";
 import EditDocument from "./components/EditDocument";
-import RootLayout from "./pages/RootLayout";
+
 import {
   collectionGroup,
   DocumentData,
-  getDocs,
   onSnapshot,
   orderBy,
   query,
-  where,
 } from "firebase/firestore";
 import { postToJSON } from "./services/firebase";
-import PostFeed from "./components/PostFeed";
 
 function App() {
   const dispatch = useDispatch();
   const [documents, setDocuments] = useState<DocumentData | undefined>();
-  const [userDocuments, setUserDocuments] = useState<
-    DocumentData | undefined
-  >();
+
   const user = useSelector(selectUser);
-  const authUser = useSelector(selectAuth);
+
   // fethc data
   useEffect(() => {
     const q = query(collectionGroup(db, "posts"), orderBy("createdAt", "desc"));
