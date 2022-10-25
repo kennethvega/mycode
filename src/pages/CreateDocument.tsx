@@ -17,6 +17,7 @@ import TagsInput from "../components/TagsInput";
 import Container from "../components/utility/Container";
 
 import SecondaryButton from "../components/Buttons/SecondaryButton";
+import { toast } from "react-toastify";
 const CreateDocument = () => {
   const [title, setTitle] = useState("");
   const [bodyContent, setBodyContent] = useState("");
@@ -49,6 +50,7 @@ const CreateDocument = () => {
           slug: docRef.id,
         });
         navigate("/");
+        toast.success("Successfully created post.");
       })
       .catch((error) => {
         console.log(error);

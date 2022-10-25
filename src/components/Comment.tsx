@@ -5,6 +5,7 @@ import {
   deleteDoc,
   doc,
   DocumentData,
+  increment,
   updateDoc,
 } from "firebase/firestore";
 import styles from "./Comment.module.scss";
@@ -65,8 +66,16 @@ const Comment = ({ comment, slug, id }: DocumentData) => {
         `${comment?.slug}`
       );
       await deleteDoc(commentRef);
+      await updateDoc(doc(db, "users", `${id}/posts/${slug}`), {
+        comments: increment(-1),
+      });
     }
   };
+
+  // updateDoc(doc(db, "users", `${user?.uid}/posts/${post?.id}`), {
+  //   username: username?.trim(),
+  //   photoURL: user?.photoURL,
+  // })
 
   return (
     <div className={styles["comment-container"]}>

@@ -4,7 +4,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "./../features/authSlice";
-
+import { toast } from "react-toastify";
 export const useLogin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -21,6 +21,7 @@ export const useLogin = () => {
         setIsPending(false);
         setError(null);
         navigate("/");
+        toast.success("Successfully logged in.");
       })
       .catch((err) => {
         setError(err.message);

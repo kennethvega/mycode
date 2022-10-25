@@ -22,6 +22,7 @@ import PrimaryButton from "../components/Buttons/PrimaryButton";
 import SecondaryButton from "../components/Buttons/SecondaryButton";
 import LoadingSpinner from "../components/utility/LoadingSpinner";
 import CommentsContainer from "../components/CommentsContainer";
+import { toast } from "react-toastify";
 
 export const Document = () => {
   const user = useSelector(selectUser);
@@ -49,6 +50,7 @@ export const Document = () => {
     await deleteDoc(docRef);
     setLoading(false);
     navigate("/");
+    toast.success("Successfully deleted post.");
   };
 
   return (

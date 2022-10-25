@@ -23,6 +23,7 @@ import { selectUser } from "../features/authSlice";
 import styles from "./EditProfile.module.scss";
 import Error from "./utility/Error";
 import LoadingSpinner from "./utility/LoadingSpinner";
+import { toast } from "react-toastify";
 
 const EditProfile = ({ userDetails, setOpenEditProfile }: DocumentData) => {
   // edit state
@@ -121,8 +122,9 @@ const EditProfile = ({ userDetails, setOpenEditProfile }: DocumentData) => {
         setLoading(true);
         await updateUserProfile();
         setOpenEditProfile(false);
+        toast.success("Successfully edited profile.");
       } catch (err) {
-        console.log(err);
+        toast.error(`${err}`);
       }
     } else {
       const userNameTaken = await checkUserWithUsername(username);
@@ -131,8 +133,9 @@ const EditProfile = ({ userDetails, setOpenEditProfile }: DocumentData) => {
           setLoading(true);
           await updateUserProfile();
           setOpenEditProfile(false);
+          toast.success("Successfully edited profile.");
         } catch (err) {
-          console.log(err);
+          toast.error(`${err}`);
         }
       } else {
         setError("username is already taken. please try another");

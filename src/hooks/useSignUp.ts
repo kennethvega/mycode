@@ -9,6 +9,7 @@ import { auth } from "../lib/firebase.js";
 
 import { useDispatch } from "react-redux";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { toast } from "react-toastify";
 
 // types
 
@@ -63,6 +64,7 @@ export const useSignup = () => {
 
             dispatch(login(user));
             navigate("/");
+            toast.success("Successfully created account🎊.");
           }
         );
         setIsPending(false);
