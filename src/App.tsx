@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  RouterProvider,
-} from "react-router-dom";
 // style
 import "./styles/Global.scss";
 import "./styles/Utility.scss";
 import "./styles/TextEditor.scss";
 import styles from "./App.module.scss";
 import "tippy.js/dist/tippy.css";
+import "./styles/Mixin.scss";
 // pages
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -76,12 +72,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Home documents={documents}  />
-            }
-          />
+          <Route path="/" element={<Home documents={documents} />} />
           <Route path="/login" element={user ? <Home /> : <Login />} />
           <Route path="/signup" element={user ? <Home /> : <SignUp />} />
           <Route path="/create" element={<CreateDocument />} />

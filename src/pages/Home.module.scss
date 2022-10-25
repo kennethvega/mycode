@@ -1,3 +1,4 @@
+@use "../styles/Mixin.scss" as mixin;
 .home-container {
   max-width: 115rem;
   margin: 8rem auto;
@@ -5,6 +6,10 @@
   display: grid;
   grid-template-columns: 30rem 1fr;
   gap: 1.3rem;
+  @include mixin.respond(tablet) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 .side-bar {
   width: 100%;
@@ -23,10 +28,14 @@
   padding: 2rem;
   border: 1px solid var(--line-color);
   height: 41rem;
-  @media (max-width: 89rem) {
-    display: none;
+  @include mixin.respond(tablet) {
+    position: relative;
+    width: 100%;
+    height: 32rem;
+    gap: 0.5rem;
   }
 }
+
 .active {
   font-weight: 600;
 }
@@ -37,6 +46,9 @@
 .side-bar-links {
   margin-top: 2rem;
   width: 100%;
+  @include mixin.respond(tablet) {
+    margin-top: 0;
+  }
   & p {
     font-size: 1.8rem;
     cursor: pointer;

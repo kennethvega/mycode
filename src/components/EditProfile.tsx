@@ -99,9 +99,7 @@ const EditProfile = ({ userDetails, setOpenEditProfile }: DocumentData) => {
     );
     const userComments = postsComments.docs.map((doc) => ({
       ...doc.data(),
-      // id: doc.id,
     }));
-
     await Promise.all(
       userComments.map((comment) =>
         updateDoc(

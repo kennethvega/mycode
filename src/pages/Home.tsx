@@ -130,31 +130,6 @@ const Home = ({ documents }: DocumentData) => {
           )}
           <Footer />
         </div>
-        {/* <div className={styles["mobile-nav"]}>
-          <div className={styles["side-bar-links"]}>
-            <p
-              onClick={handleHome}
-              className={`${!filterUserDocs ? `${styles.active}` : " "}`}
-            >
-              {!filterUserDocs ? <AiFillHome /> : <AiOutlineHome />}
-            </p>
-            <p
-              onClick={handleMyDocuments}
-              className={`${filterUserDocs ? `${styles.active}` : " "}`}
-            >
-              {filterUserDocs ? (
-                <BsFileEarmarkCodeFill />
-              ) : (
-                <BsFileEarmarkCode />
-              )}
-            </p>
-            <Link to={`/profile/${user?.uid}`}>
-              <p>
-                <BsFillPersonFill />
-              </p>
-            </Link>
-          </div>
-        </div> */}
       </div>
 
       {filterUserDocs && <PostFeed documents={userDocs} />}

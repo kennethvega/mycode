@@ -1,7 +1,13 @@
+@use "../styles/Mixin.scss" as mixin;
+
 .profile-grid {
   display: grid;
   grid-template-columns: 33% 1fr;
   gap: 1.3rem;
+  @include mixin.respond(tablet) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 .posts-container {
   display: flex;
