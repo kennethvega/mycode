@@ -47,11 +47,9 @@ const CommentsContainer = ({ id, slug }: CommentsContainerProps) => {
     });
   }, []);
 
- 
   // post reference
   const postRef = doc(db, "users", `${id}`, "posts", `${slug}`);
 
- 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -65,6 +63,7 @@ const CommentsContainer = ({ id, slug }: CommentsContainerProps) => {
         slug: "",
         id: user?.uid,
         createdAt: serverTimestamp(),
+        postId: slug,
       }
     )
       .then(async (docRef) => {

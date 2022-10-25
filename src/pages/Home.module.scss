@@ -23,6 +23,9 @@
   padding: 2rem;
   border: 1px solid var(--line-color);
   height: 41rem;
+  @media (max-width: 89rem) {
+    display: none;
+  }
 }
 .active {
   font-weight: 600;

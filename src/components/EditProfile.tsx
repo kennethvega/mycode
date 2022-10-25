@@ -26,12 +26,11 @@ import Error from "./utility/Error";
 import LoadingSpinner from "./utility/LoadingSpinner";
 
 const EditProfile = ({ userDetails, setOpenEditProfile }: DocumentData) => {
-  const { id } = useParams();
   // edit state
   const [username, setUsername] = useState<string | undefined>(
     userDetails?.username
   );
- 
+
   const [bio, setBio] = useState<string | undefined>(userDetails?.bio);
   const [preview, setPreview] = useState<any>();
   const [profilePicture, setProfilePicture] = useState<File | null>(null);
@@ -94,6 +93,31 @@ const EditProfile = ({ userDetails, setOpenEditProfile }: DocumentData) => {
         })
       )
     );
+    // update comments
+    const postsComments = await getDocs(
+      query(collectionGroup(db, "comments"), where("id", "==", userDetails?.id))
+    );
+    const userComments = postsComments.docs.map((doc) => ({
+      ...doc.data(),
+      // id: doc.id,
+    }));
+
+    await Promise.all(
+      userComments.map((comment) =>
+        updateDoc(
+          doc(
+            db,
+            "users",
+            `${user?.uid}/posts/${comment?.postId}/comments/${comment?.slug}`
+          ),
+          {
+            username: username?.trim(),
+            photoURL: user?.photoURL,
+          }
+        )
+      )
+    );
+
     setLoading(false);
     setError("");
   };
