@@ -52,18 +52,20 @@ const Comment = ({ comment, slug, id }: DocumentData) => {
     }
   };
 
-  const commentRef = doc(
-    db,
-    "users",
-    `${id}`,
-    "posts",
-    `${slug}`,
-    "comments",
-    `${comment?.slug}`
-  );
   const handleDelete = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    await deleteDoc(commentRef);
+    if (comment.slug) {
+      const commentRef = doc(
+        db,
+        "users",
+        `${id}`,
+        "posts",
+        `${slug}`,
+        "comments",
+        `${comment?.slug}`
+      );
+      await deleteDoc(commentRef);
+    }
   };
 
   return (
