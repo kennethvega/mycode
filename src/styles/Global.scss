@@ -1,3 +1,4 @@
+@use "./Mixin.scss" as mixin;
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
 
 :root {
@@ -42,6 +43,9 @@ body {
 html {
   font-size: 62.5%;
   scroll-behavior: smooth;
+  @include mixin.respond(phone-sm) {
+    font-size: 56.25%;
+  }
 }
 
 a {

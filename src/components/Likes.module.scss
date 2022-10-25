@@ -1,3 +1,5 @@
+@use "../styles/Mixin.scss" as mixin;
+
 .likes-container {
   display: flex;
   flex-direction: column;
@@ -7,6 +9,10 @@
 
   & span {
     font-size: 1.5rem;
+  }
+  @include mixin.respond(phone) {
+    margin-top: 0;
+    flex-direction: row;
   }
 }
 .like {

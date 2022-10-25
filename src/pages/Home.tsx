@@ -54,7 +54,7 @@ const Home = ({ documents }: DocumentData) => {
       }
     });
   }
-  console.log(userDocs);
+
   return (
     <section className={styles[`home-container`]}>
       <div className={styles["side-bar"]}>

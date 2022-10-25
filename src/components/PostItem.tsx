@@ -17,43 +17,46 @@ const PostItem = ({ document: post }: PostItemProps) => {
 
   return (
     <div className={styles["post-container"]}>
-      <img
-        src={post.photoURL ? post.photoURL : defaultImage}
-        alt="author's image"
-        className={styles["image"]}
-      />
-      <div className={styles["text-container"]}>
-        <div className={styles["post-header"]}>
+      <div className={styles["post-header"]}>
+        <img
+          src={post.photoURL ? post.photoURL : defaultImage}
+          alt="author's image"
+          className={styles["image"]}
+        />
+        <div>
           <Link to={`/profile/${post.id}`}>
             <h2>{name}</h2>
           </Link>
           <span className={styles.date}>{date}</span>
         </div>
-        <div className={styles["post-body"]}>
-          <Link to={`/document/${post.id}/${post.slug}`}>
-            <h2 className={styles["post-title"]}>{post.title}</h2>
-          </Link>
+      </div>
 
-          <div className={styles.tags}>
-            {post.tags.map((tag, index) => {
-              return <p key={index}>#{tag}</p>;
-            })}
-          </div>
+      <div className={styles["post-body"]}>
+        <Link to={`/document/${post.id}/${post.slug}`}>
+          <h2 className={styles["post-title"]}>{post.title}</h2>
+        </Link>
+
+        <div className={styles.tags}>
+          {post.tags.map((tag, index) => {
+            return <p key={index}>#{tag}</p>;
+          })}
         </div>
-        <div className={styles["post-footer"]}>
-          <Link to={`/document/${post.id}/${post.slug}`}>
-            <span className={styles.icons}>
-              <RiHeart2Line className={styles.icon} />
-              {post?.likes.length === 0 ? "0" : post.likes?.length} Reactions
-            </span>
-          </Link>
-          <Link to={`/document/${post.id}/${post.slug}`}>
-            <span className={styles.icons}>
-              <CgComment className={styles.icon} />{" "}
-              {post?.comments ? post.comments : "0"} comments
-            </span>
-          </Link>
-        </div>
+      </div>
+      <div className={styles["post-footer"]}>
+        <Link to={`/document/${post.id}/${post.slug}`}>
+          <span className={styles.icons}>
+            <RiHeart2Line className={styles.icon} />
+            {post?.likes.length === 0 ? "0" : post.likes?.length}
+            <p className={styles["footer-text"]}>Reaction</p>
+          </span>
+        </Link>
+        <Link to={`/document/${post.id}/${post.slug}`}>
+          <span className={styles.icons}>
+            <CgComment className={styles.icon} />{" "}
+            {post?.comments ? post.comments : "0"}{" "}
+            <p className={styles["footer-text"]}>Comments</p>
+          </span>
+        </Link>
       </div>
     </div>
   );

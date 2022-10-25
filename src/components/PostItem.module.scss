@@ -1,3 +1,5 @@
+@use "../styles/Mixin.scss" as mixin;
+
 .post-container {
   width: 100%;
   height: 21.5rem;
@@ -5,12 +7,25 @@
   border-radius: 0.5rem;
   padding: 2rem;
   display: flex;
+  flex-direction: column;
   gap: 1rem;
   border: 1px solid var(--line-color);
   overflow: hidden;
-  word-break: break-all;
+  justify-content: space-between;
+  word-break: normal;
+
+  @include mixin.respond(phone-sm) {
+    height: 25.5rem;
+    gap: 2rem;
+    padding: 1rem;
+  }
 }
 .post-header {
+  display: flex;
+  gap: 1rem;
+  & div {
+    width: 20rem;
+  }
   & h2 {
     padding: 0.3rem;
     border-radius: 0.5rem;
@@ -19,17 +34,13 @@
     max-width: fit-content;
     transition: all 0.3s;
     font-size: 1.4rem;
+
     &:hover {
       background-color: var(--hover-gray-bg);
     }
   }
 }
-.text-container {
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+
 .image {
   width: 3.5rem;
   height: 3.5rem;
@@ -37,7 +48,10 @@
   object-fit: cover;
 }
 .post-body {
-  max-width: 58rem;
+  margin-left: 5rem;
+  @include mixin.respond(phone-sm) {
+    margin-left: 0;
+  }
   .post-title {
     font-size: 2.4rem;
     font-weight: 800;
@@ -46,15 +60,24 @@
     &:hover {
       color: #3b49df;
     }
+    @include mixin.respond(phone) {
+      font-size: 2.1rem;
+    }
   }
 }
 .tags {
   margin-top: 1rem;
   display: flex;
   gap: 2rem;
+  @include mixin.respond(phone-sm) {
+    gap: 1rem;
+  }
   & p {
     font-size: 1.4rem;
     color: var(--text);
+    @include mixin.respond(phone-sm) {
+      font-size: 1.2rem;
+    }
   }
 }
 .date {
@@ -64,8 +87,13 @@
 }
 .post-footer {
   margin-top: 1rem;
+  margin-left: 5rem;
   display: flex;
   gap: 4rem;
+  @include mixin.respond(phone-sm) {
+    margin-left: 0;
+    gap: 7rem;
+  }
   & span {
     font-size: 1.6rem;
     color: var(--text);
@@ -78,14 +106,21 @@
 }
 .icons {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   padding: 0.3rem;
   border-radius: 0.5rem;
   transition: all 0.3s;
   font-size: 1.4rem !important;
-
+  @include mixin.respond(phone-sm) {
+    padding: 0 !important;
+  }
   &:hover {
     background-color: var(--hover-gray-bg);
+  }
+}
+.footer-text {
+  @include mixin.respond(phone-sm) {
+    display: none;
   }
 }

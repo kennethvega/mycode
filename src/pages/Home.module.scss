@@ -10,6 +10,9 @@
     display: flex;
     flex-direction: column;
   }
+  @include mixin.respond(phone) {
+    padding: 0;
+  }
 }
 .side-bar {
   width: 100%;

@@ -1,3 +1,4 @@
+@use "../styles/Mixin.scss" as mixin;
 .form {
   max-width: 110rem;
   margin: 1rem auto;
@@ -6,6 +7,10 @@
   background-color: var(--gray-bg);
   border-radius: 0.5rem;
   border: 1px solid var(--line-color);
+  @include mixin.respond(phone) {
+    padding: 1rem;
+  }
+
   h2 {
     font-size: 2.5rem;
     color: var(--light-text);
