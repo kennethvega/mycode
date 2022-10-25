@@ -2,6 +2,7 @@ import defaultImage from "../assets/blank profile.jpg";
 import {
   arrayRemove,
   arrayUnion,
+  deleteDoc,
   doc,
   DocumentData,
   updateDoc,
@@ -51,6 +52,20 @@ const Comment = ({ comment, slug, id }: DocumentData) => {
     }
   };
 
+  const commentRef = doc(
+    db,
+    "users",
+    `${id}`,
+    "posts",
+    `${slug}`,
+    "comments",
+    `${comment?.slug}`
+  );
+  const handleDelete = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    await deleteDoc(commentRef);
+  };
+
   return (
     <div className={styles["comment-container"]}>
       <div className={styles["image-container"]}>
@@ -64,12 +79,13 @@ const Comment = ({ comment, slug, id }: DocumentData) => {
         <div className={styles["comment-heading"]}>
           <p className={styles.name}>{name} </p>
           <span className={styles.date}>{date}</span>
-          {comment?.id === user?.uid}
-          <Tippy content="Delete comment">
-            <div className={styles.delete}>
-              <RiDeleteBin6Line />
-            </div>
-          </Tippy>
+          {comment?.id === user?.uid && (
+            <Tippy content="Delete comment">
+              <div className={styles.delete} onClick={handleDelete}>
+                <RiDeleteBin6Line />
+              </div>
+            </Tippy>
+          )}
         </div>
         <div className={styles.message}>{comment.message}</div>
         {user ? (
