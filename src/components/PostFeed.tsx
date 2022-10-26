@@ -3,7 +3,7 @@ import styles from "./PostFeed.module.scss";
 import PostItem from "./PostItem";
 import { DocumentData } from "firebase/firestore";
 import { Document } from "../ts/types/document";
-import PostItemSkeleton from "../components/Skeletons/PostItemSkeleton";
+import PostItemSkeleton from "./skeletons/PostItemSkeleton";
 
 const PostFeed = ({ documents }: DocumentData) => {
   const [filteredDocs, setFilteredDocs] = useState([]);

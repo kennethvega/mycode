@@ -19,7 +19,7 @@ import { useSelector } from "react-redux";
 import { selectAuth, selectUser } from "../features/authSlice";
 // skeleton
 
-import HomeSidebarSkeleton from "../components/Skeletons/HomeSidebarSkeleton";
+import HomeSidebarSkeleton from "../components/skeletons/HomeSidebarSkeleton";
 import { DocumentData } from "firebase/firestore";
 
 const Home = ({ documents }: DocumentData) => {
