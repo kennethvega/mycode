@@ -75,7 +75,7 @@ button {
     font-family: "Inter", sans-serif;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
-    overflow: hidden;
+    overflow-x: auto;
     white-space: pre !important;
     width: 100%;
 
@@ -96,7 +96,6 @@ button {
 .blockquote {
   display: none;
 }
-
 
 code {
   background-color: var(--gray-bg);
