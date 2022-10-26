@@ -9,7 +9,7 @@ import Theme from "./Theme";
 import { useSelector } from "react-redux";
 import { selectAuth, selectUser } from "../../features/authSlice";
 import ProfileDropDown from "./ProfileDropDown";
-import NavSkeleton from "../skeletons/NavSkeleton";
+import NavSkeleton from "../Skeletons/NavSkeleton";
 
 const Navbar = () => {
   const auth = useSelector(selectAuth);

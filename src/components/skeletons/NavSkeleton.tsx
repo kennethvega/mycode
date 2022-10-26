@@ -1,4 +1,3 @@
-
 import BaseSkeleton from "./BaseSkeleton";
 import "./Skeleton.scss";
 const NavSkeleton = () => {

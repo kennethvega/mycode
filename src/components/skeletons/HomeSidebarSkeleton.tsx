@@ -1,4 +1,3 @@
-
 import BaseSkeleton from "./BaseSkeleton";
 
 const HomeSidebarSkeleton = () => {
