@@ -28,7 +28,7 @@ const Navbar = () => {
               <>
                 {user ? (
                   <>
-                    <Tippy content="Create account">
+                    <Tippy content="Create a document">
                       <Link to="/create">
                         <IoMdAdd className={styles.icon} />
                       </Link>
