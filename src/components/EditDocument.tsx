@@ -28,7 +28,7 @@ const EditDocument = ({ post, setOpenEditForm }: DocumentData) => {
       await updateDoc(doc(db, "users", `${post.id}`, "posts", `${post.slug}`), {
         title: title,
         tags: tags,
-        bodyContent: bodyContent,
+        content: bodyContent,
       });
       setOpenEditForm(false);
       // setOpenEditForm(false);

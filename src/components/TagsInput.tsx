@@ -36,7 +36,7 @@ const TagsInput = ({ tags, setTags }: TagsInputProps) => {
           onKeyDown={handleKeyDown}
           type="text"
           className={styles.input}
-          placeholder="Add tags..."
+          placeholder="Input then press enter to add tags..."
           maxLength={10}
         />
       ) : (
