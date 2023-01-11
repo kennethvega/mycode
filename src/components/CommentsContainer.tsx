@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { selectUser } from "../features/authSlice";
 
 import { db } from "../lib/firebase";
@@ -50,35 +51,39 @@ const CommentsContainer = ({ id, slug }: CommentsContainerProps) => {
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    setLoading(true);
-    await addDoc(
-      collection(db, "users", `${id}`, "posts", `${slug}`, "comments"),
-      {
-        username: user?.displayName,
-        message: commentInput,
-        likes: [],
-        photoURL: user?.photoURL,
-        slug: "",
-        id: user?.uid,
-        createdAt: serverTimestamp(),
-        postId: slug,
-      }
-    )
-      .then(async (docRef) => {
-        // update document slug to equals document id
-        await updateDoc(docRef, {
-          slug: docRef.id,
+    if (commentInput.length > 2) {
+      setLoading(true);
+      await addDoc(
+        collection(db, "users", `${id}`, "posts", `${slug}`, "comments"),
+        {
+          username: user?.displayName,
+          message: commentInput,
+          likes: [],
+          photoURL: user?.photoURL,
+          slug: "",
+          id: user?.uid,
+          createdAt: serverTimestamp(),
+          postId: slug,
+        }
+      )
+        .then(async (docRef) => {
+          // update document slug to equals document id
+          await updateDoc(docRef, {
+            slug: docRef.id,
+          });
+          // update comments value in the post
+          await updateDoc(postRef, {
+            comments: comments?.length + 1,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
         });
-        // update comments value in the post
-        await updateDoc(postRef, {
-          comments: comments?.length + 1,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    setLoading(false);
-    setCommentInput("");
+      setCommentInput("");
+      setLoading(false);
+    } else {
+      toast.error("comments must be at least 3 characters long");
+    }
   };
 
   return (

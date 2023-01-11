@@ -72,10 +72,7 @@ const Comment = ({ comment, slug, id }: DocumentData) => {
     }
   };
 
-  // updateDoc(doc(db, "users", `${user?.uid}/posts/${post?.id}`), {
-  //   username: username?.trim(),
-  //   photoURL: user?.photoURL,
-  // })
+
 
   return (
     <div className={styles["comment-container"]}>
