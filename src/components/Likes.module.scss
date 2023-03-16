@@ -1,0 +1,34 @@
+@use "../styles/Mixin.scss" as mixin;
+
+.likes-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 1rem;
+
+  & span {
+    font-size: 1.5rem;
+  }
+  @include mixin.respond(phone) {
+    margin-top: 0;
+    flex-direction: row;
+  }
+}
+.like {
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    color: red;
+  }
+}
+.unlike {
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: red;
+  &:hover {
+    color: rgb(136, 2, 2);
+  }
+}

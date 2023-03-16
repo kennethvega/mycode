@@ -1,0 +1,74 @@
+// <---------- containers ----------->
+.container {
+  max-width: 115rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+  // delete later
+}
+// <---------- buttons ----------->
+.btn {
+  cursor: pointer;
+  width: 100%;
+  padding: 1.2rem 3rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  transition: all 0.3s;
+  border-radius: 0.5rem;
+  border: none;
+}
+.btn-main {
+  background-color: var(--text);
+  color: var(--gray-bg);
+  &:hover {
+    background-color: var(--hover-text);
+  }
+}
+.btn-outlined {
+  background-color: var(--gray-bg);
+  color: var(--text);
+  border: 1px solid var(--text);
+  &:hover {
+    background-color: var(--hover-gray-bg);
+  }
+}
+
+// <---------- margins ----------->
+.margin-top-big {
+  margin-top: 8rem;
+}
+
+// <---------- Form  ----------->
+.form-message {
+  font-size: 1.8rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text);
+  font-weight: 400;
+  cursor: pointer;
+
+  a {
+    color: var(--text);
+    padding: 3px;
+    font-weight: 800;
+    text-decoration: none;
+    border-bottom: 1px solid var(--text);
+    &:hover {
+      color: var(--hover-text);
+    }
+  }
+}
+
+.demo-details {
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+  p {
+    font-size: 1.7rem;
+    color: var(--text);
+    font-size: 400;
+  }
+  span {
+    font-size: 1.7rem;
+    color: var(--text);
+    font-size: 400;
+  }
+}

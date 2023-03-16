@@ -1,0 +1,49 @@
+.container {
+  width: 100%;
+  border-bottom: 1px solid var(--line-color);
+  position: fixed;
+  top: 0;
+  z-index: 200;
+  background-color: var(--gray-bg);
+}
+.logo {
+  color: var(--text);
+  font-weight: 900;
+  font-size: 2rem;
+  cursor: pointer;
+  &:hover {
+    color: var(--hover-text);
+  }
+}
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 6rem;
+}
+.icon {
+  font-size: 3.7rem;
+  background-color: var(--gray);
+  border-radius: 50%;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--hover-gray-bg);
+  }
+}
+.navbar-right-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2rem;
+  min-width: 20rem;
+
+  .login {
+    font-size: 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text);
+    &:hover {
+      color: var(--hover-text);
+    }
+  }
+}

@@ -1,0 +1,76 @@
+@use "../styles/Mixin.scss" as mixin;
+.home-container {
+  max-width: 115rem;
+  margin: 8rem auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 30rem 1fr;
+  gap: 1.3rem;
+  @include mixin.respond(tablet) {
+    display: flex;
+    flex-direction: column;
+  }
+  @include mixin.respond(phone) {
+    padding: 0;
+  }
+}
+.side-bar {
+  width: 100%;
+}
+.inner-container {
+  position: fixed;
+  background-color: var(--gray-bg);
+  border-radius: 0.5rem;
+  // ------------
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 2rem;
+  width: 30rem;
+  padding: 2rem;
+  border: 1px solid var(--line-color);
+  height: 41rem;
+  @include mixin.respond(tablet) {
+    position: relative;
+    width: 100%;
+    height: 32rem;
+    gap: 0.5rem;
+  }
+}
+
+.active {
+  font-weight: 600;
+}
+.welcome-message {
+  font-size: 1.7rem;
+  margin: 2rem 0;
+}
+.side-bar-links {
+  margin-top: 2rem;
+  width: 100%;
+  @include mixin.respond(tablet) {
+    margin-top: 0;
+  }
+  & p {
+    font-size: 1.8rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    padding: 1rem;
+    border-radius: 0.5rem;
+    &:hover {
+      background-color: var(--background-color);
+    }
+  }
+}
+.login {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.link {
+  width: 100%;
+}

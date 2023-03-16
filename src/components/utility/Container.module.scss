@@ -1,0 +1,11 @@
+@use "../../styles/Mixin.scss" as mixin;
+
+.container {
+  max-width: 115rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+  margin-top: 8rem;
+  @include mixin.respond(phone) {
+    padding: 0;
+  }
+}

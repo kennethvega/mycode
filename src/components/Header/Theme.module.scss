@@ -1,0 +1,17 @@
+.icon {
+  font-size: 2.5rem;
+  color: var(--text);
+  cursor: pointer;
+}
+.themeToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem;
+  background-color: var(--gray);
+  border-radius: 50%;
+  transition: all 0.3s;
+  &:hover {
+    background-color: var(--hover-gray-bg);
+  }
+}

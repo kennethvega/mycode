@@ -1,0 +1,73 @@
+.comment-container {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.image {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  margin-top: 0.5rem;
+}
+.content-container {
+  border: 1px solid var(--line-color);
+  min-height: 10rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+}
+.comment-heading {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.name {
+  font-size: 1.4rem !important;
+  font-weight: 600;
+}
+.date {
+  font-size: 1.3rem;
+  color: var(--text-light);
+}
+.message {
+  font-size: 1.6rem;
+}
+.delete {
+  margin-left: auto;
+  font-size: 2rem;
+  &:hover {
+    color: red;
+    cursor: pointer;
+  }
+}
+.likes-container {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  & p {
+    font-size: 1.5rem;
+  }
+}
+.likes {
+  font-size: 2rem;
+
+  width: 2rem;
+  height: 2rem;
+  &:hover {
+    cursor: pointer;
+    color: red;
+  }
+}
+.fill {
+  color: red;
+}

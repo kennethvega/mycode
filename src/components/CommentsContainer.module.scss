@@ -1,0 +1,25 @@
+.container {
+  margin-top: 2rem;
+  width: 100%;
+
+  & h2 {
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+}
+.comment-input {
+  width: 100%;
+  border-radius: 0.5rem;
+  height: 10rem;
+  border: 2px solid var(--hover-gray-bg);
+  padding: 1rem;
+  word-break: break-all;
+  background-color: var(--gray-bg);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+}
+.button-container {
+  margin-top: 1rem;
+  max-width: 15rem;
+}
